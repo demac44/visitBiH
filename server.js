@@ -9,7 +9,7 @@ if (process.env.NODE_ENV !== 'production') {
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+import { join, resolve } from 'path'
 import cors from "cors"
 import cookieParser from "cookie-parser"
 
@@ -20,8 +20,6 @@ import auth from "./routes/api/auth.js"
 
 import mongoose from 'mongoose'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
 
 mongoose.connect(process.env.MONGODB_URI, 
     { useNewUrlParser: true, useUnifiedTopology: true })
@@ -29,6 +27,10 @@ mongoose.connect(process.env.MONGODB_URI,
     .catch((err) => console.log(err))
 
 const app = express()
+
+const __dirname = resolve()
+app.use(express.static(join(__dirname, "client", "build")))
+
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Credentials', true);
@@ -48,7 +50,6 @@ app.use(cors({
 
 app.use(cookieParser())
 
-app.use(express.static(path.join(__dirname, "client", "build", "index.html")))
 
 
 app.use("/api/places", place)
@@ -57,7 +58,7 @@ app.use("/api/users", user)
 app.use("/api/auth", auth)
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
+    res.sendFile(join(__dirname, "client", "build", "index.html"))
 })    
 
 const PORT = process.env.PORT || 8000
