@@ -48,7 +48,7 @@ app.use(cors({
 
 app.use(cookieParser())
 
-app.use(express.static(path.join(__dirname, "../client", "build", "index.html")))
+app.use(express.static(path.join(__dirname, "client", "build", "index.html")))
 
 
 app.use("/api/places", place)
@@ -57,7 +57,7 @@ app.use("/api/users", user)
 app.use("/api/auth", auth)
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client", "build", "index.html"))
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
 })    
 
 const PORT = process.env.PORT || 8000
