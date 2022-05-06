@@ -1,0 +1,47 @@
+.places-list-container{
+    width: 100vw;
+    min-height: 100vh;
+    background: url(../../../Assets/Images/cilim.jpg);
+    padding: 20px;
+    padding-top: 120px;
+    position: relative;
+}
+.places-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    z-index: 1000;
+}
+.places-overlay{
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+    z-index: 0;
+}
+
+
+@media screen and (max-width: 1200px){
+    .places-list{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 991px){
+    .places-list{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 768px){
+    .places-list-container{
+        padding-top: 150px;
+    }
+}
+@media screen and (max-width: 576px){
+    .places-list{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

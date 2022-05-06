@@ -1,0 +1,144 @@
+.admin_main{
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #e4e4e4;
+}
+.admin_add_form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 50%;
+}
+.admin_add_form input, .admin_add_form select{
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #1f1f1f;
+    outline: none;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: white;
+    font-weight: bold;
+}
+.admin_add_form select option{
+    font-weight: bold;
+    font-size: 14px;
+}
+.admin_add_form label{
+    margin-top: 20px;
+    width: 100%;
+    padding: 5px;
+    background-color: #2f2f2f;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.admin_add_form textarea{
+    width: 100%;
+    height: 200px;
+    margin-top: 20px;
+    border: 1p solid black;
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.admin_section_title{
+    width: 100%;
+    padding: 15px;
+    background-color: #2f2f2f;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.add-new-section-btn{
+    margin-top: 20px;
+    align-self: flex-end;
+    border: 1px solid black;
+    font-weight: bold;
+    padding: 10px;
+    color: black;
+    transition: ease .2s;
+    cursor: pointer;
+}
+.add-new-section-btn:hover{
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.admin_add_btn{
+    width: 200px;
+    height: 40px;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: #1f1f1f;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+.admin_add_btn:hover{
+    background-color: #2f2f2f;
+}
+.admin_add_article_section{
+    position: relative;
+    width: 100%;
+    background-color: rgb(5, 86, 152);
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+}
+.old-image-box{
+    width: 100%;
+}
+.old-image-box img{
+    width: 100%;
+    margin-top: 10px;
+    border: 2px solid black;
+}
+.old-image-link{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.old-image-link i{
+    margin-left: 10px;
+    font-size: 20px;
+    color: darkred;
+    cursor: pointer;
+}
+.remove-section-btn{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+.remove-section-btn i{
+    font-size: 25px;
+    color: rgb(193, 21, 21);
+}
+
+.error-message{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    background-color: rgb(181, 65, 63);
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 991px){
+    .admin_add_form{
+        width: 100%;
+    }
+}

@@ -1,0 +1,41 @@
+.article-intro-box{
+    width: 100vw;
+    height: fit-content;
+    padding: 20px;
+    padding-left: 80px;
+    background-color: #d8d8d8;
+}
+.article-intro-text{
+    width: 60%;
+}
+.article-intro-text h3{
+    font-size: 30px;
+    margin-top: 20px;
+    color: black
+}
+.article-intro-text p{
+    font-size: 18px;
+    color: black;
+    margin-top: 20px;
+    line-height: 30px;
+    font-weight: bold;
+}
+.article-intro-text hr{
+    margin-top: 40px;
+}
+
+
+@media screen and (max-width:991px){
+    .article-intro-text{
+        width: 80%;
+    }
+}
+@media screen and (max-width:768px){
+    .article-intro-box{
+        padding: 30px;
+        padding-left: 30px;
+    }
+    .article-intro-text{
+        width: 100%;
+    }
+}

@@ -1,0 +1,25 @@
+import './App.css';
+import { Routes, Route} from "react-router-dom"
+import Home from './Routes/Home/Home';
+import Explore from './Routes/Explore/Explore';
+import Places from './Routes/Places/Places';
+import Place from './Routes/Place/Place';
+import Article from './Routes/Article/Article';
+import Articles from './Routes/Articles/Articles';
+import About from './Routes/About/About';
+
+function App() {
+  return (
+     <Routes>
+       <Route path='/' element={<Home/>}/>
+       <Route path='/explore' element={<Explore/>}/>
+       <Route path='/explore/:region' element={<Places/>}/>
+       <Route path='/explore/:region/:place' element={<Place/>}/>
+       <Route path='/article/:title' element={<Article/>}/>
+       <Route path='/articles' element={<Articles/>}/>
+       <Route path='/about' element={<About/>}/>
+    </Routes>
+  );
+}
+
+export default App;

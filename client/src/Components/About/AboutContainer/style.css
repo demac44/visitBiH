@@ -1,0 +1,85 @@
+.about-container{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-flag-img{
+    width: 100%;
+    min-height: 100%;
+}
+.flag-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-box{
+    width: 60%;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.8);
+    border-radius: 10px;
+}
+.about-box h2{
+    color: white;
+    font-size: 32px;
+}
+.about-box h3{
+    color: white;
+    margin-top: 30px;
+    font-size: 32px;
+}
+
+.about-box p{
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+    line-height: 35px;
+}
+
+
+@media screen and (max-width: 991px){
+    .about-flag-img{
+        width: auto;
+        height: 100%;
+    }
+    .about-box{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .flag-overlay{
+        padding-top: 120px;
+        padding-bottom: 100px;
+        height: fit-content;
+        min-height: 100%;
+    }
+    .about-box{
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 447px){
+    .about-container{
+        height: calc(100vh + 100px);
+    }
+    .about-box p{
+        font-size: 16px;
+    }
+    .about-box h2, .about-box h3{
+        font-size: 25px;
+    }
+}

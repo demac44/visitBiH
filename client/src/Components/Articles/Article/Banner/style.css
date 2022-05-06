@@ -1,0 +1,33 @@
+.article-banner{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.article-banner img{
+    width: 100%;
+    min-height: 100%;
+}
+.article-banner h1{
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 40px;
+}
+
+
+@media screen and (max-width: 1200px){
+    .article-banner img{
+        width: auto;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .article-banner h1{
+        font-size: 30px;
+    }
+}

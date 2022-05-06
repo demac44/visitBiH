@@ -1,0 +1,62 @@
+.svg-map-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.svg-map-box{
+    height: 80vh;
+    width: 100%;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.svg-map-bckg{
+    position: absolute;
+    min-height: 100%;
+    min-width: 100%;
+}
+.svg-map{
+    height: 100%;
+    width: 50%;
+    margin-top: 50px;
+}
+.svg-map path{
+    fill: rgba(0,0,0,0.8);
+    stroke: white;
+    stroke-width: 2px;
+    transition: ease .2s;
+}
+.svg-map path:hover{
+    fill: rgba(0,0,0,0);
+}
+
+.display-region-name{
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 10000;
+}
+.display-region-name p{
+    color: white;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 991px){
+    .display-region-name{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .svg-map{
+        width: 100%;
+        margin-top: 120px;
+    }
+}

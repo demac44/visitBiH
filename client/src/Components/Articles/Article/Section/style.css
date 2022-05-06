@@ -1,0 +1,43 @@
+.article-section{
+    width: 60%;
+    margin-top: 40px;
+    background-color: #d8d8d8;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+.article-section h2{
+    font-size: 30px;
+    color: black;
+}
+.article-section p{
+    font-size: 18px;
+    margin: 20px 0 20px 0;
+    line-height: 30px;
+    color: black;
+    font-weight: bold;
+}
+.article-section img{
+    width: 100%;
+    border-radius: 10px;
+    border: 3px solid #3f3f3f;
+}
+.article-section hr{
+    margin-top: 20px;
+}
+
+
+@media screen and (max-width:991px){
+    .article-section{
+        width: 80%;
+    }
+}
+@media screen and (max-width:768px){
+    .article-section{
+        width: 100%;
+    }
+}
+@media screen and (max-width:447px){
+    .article-section{
+        margin-top: 20px;
+    }
+}

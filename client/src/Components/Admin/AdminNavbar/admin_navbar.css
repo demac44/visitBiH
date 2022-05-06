@@ -1,0 +1,66 @@
+.admin_navbar{
+    position: relative;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 300px;
+    background-color: #1f1f1f;
+    z-index: 1000;
+}
+.admin_closed_navbar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 50px;
+    background-color: #1f1f1f;
+    text-align: center;
+    padding-top: 10px;
+    cursor: pointer;
+    z-index: 10000;
+}
+.admin_closed_navbar i{
+    font-size: 30px;
+    color: white;
+}
+
+.admin_navbar ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.admin_navbar ul li{
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+}
+.admin_navbar ul a{
+    color: white;
+    font-size: 20px;
+}
+.admin_navbar ul a:hover{
+    background-color: rgb(7, 172, 172);
+}
+.log-out-btn{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    cursor: pointer;
+}
+.log-out-btn:hover{
+    background-color: rgb(7, 172, 172);
+}
+
+
+@media screen and (max-width: 991px){
+    .admin_navbar{
+        position: fixed;
+    }
+}
+@media screen and (max-width: 567px){
+    .admin_navbar{
+        width: 100vw;
+    }
+}

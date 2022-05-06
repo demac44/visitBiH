@@ -1,0 +1,16 @@
+.logo{
+    width: 400px;
+}
+
+
+
+@media screen and (max-width: 768px){
+    .logo{
+        width: 300px;
+    }
+}
+@media screen and (max-width: 447px){
+    .logo{
+        width: 260px;
+    }
+}

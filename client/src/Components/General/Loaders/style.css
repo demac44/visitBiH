@@ -1,0 +1,43 @@
+.screen-loader{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000000000000000;
+}
+.screen-loader-spinner{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 8px solid rgb(254, 253, 253);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    animation-name: spinner;
+    animation-duration: .8s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.section-loader{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000000000000000;
+}
+
+@keyframes spinner {
+    0%{transform: rotate(0deg);}
+    100%{transform: rotate(360deg);}
+}

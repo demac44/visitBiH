@@ -1,0 +1,46 @@
+.place-title{
+    width: 60%;
+    padding: 20px;
+    background-color: rgba(0,0,0,0.9);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    text-align: center;
+}
+.place-title h2{
+    color: white;
+    font-size: 35px;
+}
+.place-title h3{
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+@media screen and (max-width: 991px){
+    .place-title{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .place-title{
+        width: 90%;
+    }
+    .place-title h2{
+        font-size: 25px;
+    }
+    .place-title h3{
+        font-size: 16px;
+    }
+
+}
+@media screen and (max-width: 447px){
+    .place-title{
+        width: 95%;
+    }
+}

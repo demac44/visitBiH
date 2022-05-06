@@ -1,0 +1,47 @@
+.start-exploring-box{
+    display: flex;
+    height: 250px;
+    background-color: rgb(15, 113, 67);
+}
+.start-exploring-box span{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.start-exploring-text{
+    padding: 50px;
+}
+.start-exploring-text h3{
+    font-size: 35px;
+    color: white;
+    text-align: center;
+}
+.start-exploring-btn a{
+    background-color: black;
+    padding: 15px 0;
+    width: 300px;
+    text-align: center;
+    color: white;
+    font-size: 35px;
+    transition: ease .3s;
+}
+.start-exploring-btn a:hover{
+    transform: scale(1.1);
+}
+
+
+@media screen and (max-width: 991px){
+    .start-exploring-box{
+        flex-direction: column;
+        height: fit-content;
+        padding: 20px;
+    }
+    .start-exploring-box span{
+        width: 100%;
+    }
+    .start-exploring-btn a{
+        font-size: 25px;
+        width: 200px;
+    }
+}

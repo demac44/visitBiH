@@ -1,0 +1,17 @@
+.footer{
+    width: 100vw;
+    padding: 25px;
+    background-color: black;
+    text-align: center;
+    z-index: 10000;
+}
+.footer p{
+    color: white;
+}
+
+
+@media screen and (max-width:447px){
+    .footer p{
+        font-size: 14px;
+    }
+}

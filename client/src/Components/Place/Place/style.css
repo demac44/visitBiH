@@ -1,0 +1,11 @@
+.place-container{
+    width: 100vw;
+    min-height: 100vh;
+    background: url(../../../Assets/Images/cilim.jpg);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 150px;
+    padding-bottom: 50px;
+}

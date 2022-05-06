@@ -1,0 +1,34 @@
+{
+  "name": "visitbih-server",
+  "engines": {
+    "npm": "8.1.3",
+    "node": "16.13.2"
+  },
+  "version": "1.0.0",
+  "description": "Website for exploring Bosnia and Herzegovina",
+  "main": "server.js",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "server": "nodemon server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "start": "node server.js",
+    "build": "npm run build"
+  },
+  "author": "Demir Umejr",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.1",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7"
+  },
+  "type": "module"
+}
