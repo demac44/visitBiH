@@ -29,7 +29,16 @@
     text-align: center;
 }
 
-
+@media screen and (max-width: 1500px){
+    .place-card{
+        height: 220px;
+    }
+}
+@media screen and (max-width: 1200px){
+    .place-card{
+        height: 250px;
+    }
+}
 @media screen and (max-width: 768px){
     .place-card{
         height: 200px;

@@ -49,6 +49,9 @@
 }
 
 @media screen and (max-width: 991px){
+    .svg-map{
+        width: 70%;
+    }
     .display-region-name{
         display: none;
     }

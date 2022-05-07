@@ -24,6 +24,11 @@
     z-index: 0;
 }
 
+@media screen and (min-width: 1800px){
+    .places-list{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
 
 @media screen and (max-width: 1200px){
     .places-list{
@@ -37,6 +42,7 @@
 }
 @media screen and (max-width: 768px){
     .places-list-container{
+        padding: 5px;
         padding-top: 150px;
     }
 }

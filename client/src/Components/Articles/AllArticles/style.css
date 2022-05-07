@@ -1,29 +1,30 @@
 .all-articles-container{
     width: 100vw;
-    height: fit-content;
     min-height: 100vh;
     background: url(../../../Assets/Images/leaves-pattern.png);
-    background-color: rgb(53, 100, 48);
+    background-color: rgb(35, 63, 32);
+    padding: 150px 10px 10px 10px;
+}
+.all-articles{
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    padding: 150px 20px 20px 20px;
 }
 
 
 @media screen and (max-width: 1200px){
-    .all-articles-container{
+    .all-articles{
         grid-template-columns: repeat(3, 1fr);
     }
 }
 @media screen and (max-width: 991px){
-    .all-articles-container{
+    .all-articles{
         grid-template-columns: repeat(2, 1fr);
     }
 }
 @media screen and (max-width: 567px){
-    .all-articles-container{
+    .all-articles{
         grid-template-columns: repeat(1, 1fr);
-        padding: 150px 10px 10px 10px;
     }
 }

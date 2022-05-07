@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import AdminNavbar from '../../../Components/Admin/AdminNavbar/AdminNavbar'
+import ConfirmDelete from '../../../Components/Admin/Confirmation box/ConfirmDelete'
 import ScreenLoader from "../../../Components/General/Loaders/ScreenLoader"
 
 
@@ -11,6 +12,7 @@ const EditArticle = () => {
   const [bannerImg, setBannerImg] = useState(null)
   const [newSections, setNewSections] = useState([])
   const [oldSections, setOldSections] = useState([])
+  const [confirmDelete, setConfirmDelete] = useState(false)
 
   const params = useParams()
 
@@ -182,17 +184,6 @@ const EditArticle = () => {
   }
 
 
-  const deleteArticle = () => {
-    setLoading(true)
-    axios({
-      method: "POST",
-      url: "/api/articles/article/delete",
-      data: {
-        id: params.id
-      },
-      withCredentials: true
-    }).then(() =>{setLoading(false); window.location.href = "/admin/articles"})
-  }
 
 
   const removeOldSection = (sectionID) => {
@@ -215,9 +206,18 @@ const EditArticle = () => {
     }
   }
 
+  const loadingCallback = useCallback(val => {
+    setLoading(val)
+  }, [setLoading])
+
+  const exitConfirmBox = useCallback(() => {
+    setConfirmDelete(false)
+  }, [setConfirmDelete])
+
   return (
     <div className='admin_container'>
       <AdminNavbar/>
+      {confirmDelete && <ConfirmDelete type="article" id={params.id} loadingCallback={loadingCallback} exitConfirmBox={exitConfirmBox}/>}
       {loading ? <ScreenLoader/> : 
       <div className='admin_main'>
           <div className='admin_section_title'>
@@ -292,7 +292,7 @@ const EditArticle = () => {
 
             <button type='submit' className='admin_add_btn'>SAVE</button>                                   
         </form>
-        <button onClick={deleteArticle} className='admin_add_btn'>DELETE</button>                                   
+        <button onClick={() => setConfirmDelete(true)} className='admin_add_btn'>DELETE</button>                                   
       </div>}
     </div>  
   )

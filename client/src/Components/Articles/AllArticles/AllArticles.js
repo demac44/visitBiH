@@ -5,7 +5,9 @@ import "./style.css"
 const AllArticles = ({articles}) => {
   return (
     <div className='all-articles-container'>
+      <div className='all-articles'>
         {articles.map(article => <ArticleCard article={article} key={article._id}/>)}
+      </div>
     </div> 
   )
 }
