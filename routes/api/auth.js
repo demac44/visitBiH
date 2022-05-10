@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken"
 
 const router = express.Router()
 
-
 router.post("/", (req, res) => {
     const { token } = req.body
 
@@ -23,7 +22,7 @@ router.post("/", (req, res) => {
         }
     }
 
-    if(!token) res.sendStatus(404);
+    if(!token) res.send("Not authenticated!");
 })
 
 

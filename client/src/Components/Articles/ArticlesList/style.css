@@ -3,9 +3,9 @@
     width: 100vw;
     position: relative;
     overflow: hidden;
-    background: url(../../../Assets/Images/leaves-pattern.png);
-    background-color: rgb(58, 75, 42);
+    background: url(../../../Assets/Images/cilim.jpg);
     padding-top: 120px;
+    padding-bottom: 50px;
 }
 .articles-list-container h1{
     position: absolute;
@@ -15,7 +15,7 @@
     text-align: center;
     color: white;
     z-index: 1000;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
 }
 .articles-list{
     display: grid;
