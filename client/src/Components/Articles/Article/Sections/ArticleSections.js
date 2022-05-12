@@ -5,9 +5,10 @@ import "./style.css"
 
 const ArticleSections = ({sections}) => {
   return (
-    <div className='article-sections'>
-        {sections.map(section => <ArticleSection section={section} key={section.section_title}/>)}
-    </div>
+      <div className='article-sections'>
+        <div className='articles-overlay'></div>
+          {sections.map(section => <ArticleSection section={section} key={section.section_title}/>)}
+      </div>
   )
 }
 

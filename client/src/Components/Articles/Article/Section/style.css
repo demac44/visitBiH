@@ -1,9 +1,11 @@
 .article-section{
+    position: relative;
     width: 60%;
     margin-top: 40px;
-    background-color: #d8d8d8;
+    background-color: #e7e7e7;
     padding: 20px 10px;
     border-radius: 10px;
+    z-index: 100;
 }
 .article-section h2{
     font-size: 30px;

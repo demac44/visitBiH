@@ -21,7 +21,7 @@ const AddPlace = () => {
     for(let i = 0;i < filesLength; i++){
       let data = new FormData()
       data.append("file", images[i])
-      data.append("upload_preset", "z8oybloj")
+      data.append("upload_preset", "visitbih-image")
       data.append("cloud_name", "de5mm13ux")
       data.append("folder", "visitBiH - Places images")
       await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)

@@ -28,7 +28,7 @@ const EditArticle = () => {
       withCredentials: true
     }).then(res => {setArticle(res.data); setOldSections(res.data.sections)})
     .then(() => setLoading(false))
-  }, [])
+  }, [params?.id])
 
 
   const uploadOldSections = async  () => {
@@ -37,7 +37,7 @@ const EditArticle = () => {
         let copy = oldSections
         let data = new FormData()
         data.append("file", oldSections[i].section_image)
-        data.append("upload_preset", "z8oybloj")
+        data.append("upload_preset", "visitbih-image")
         data.append("cloud_name", "de5mm13ux")
         data.append("folder", "visitBiH - Article section images")
         await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
@@ -54,7 +54,7 @@ const EditArticle = () => {
       let copy = newSections
       let data = new FormData()
       data.append("file", newSections[i].section_image)
-      data.append("upload_preset", "z8oybloj")
+      data.append("upload_preset", "visitbih-images")
       data.append("cloud_name", "de5mm13ux")
       data.append("folder", "visitBiH - Article section images")
       await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
@@ -233,7 +233,7 @@ const EditArticle = () => {
             
             <label>Banner image</label>
             <input defaultValue={article.banner} readOnly/>
-            <img src={article.banner} style={{width:"100%", marginTop:"10px"}}/>
+            <img src={article.banner} style={{width:"100%", marginTop:"10px"}} alt=""/>
 
             <label htmlFor='banner'>Change banner image: </label>
             <input type="file" id='banner' name='banner' accept='image/*' multiple={false} onChange={(e)=>setBannerImg(e.target.files[0])}/>
@@ -256,7 +256,7 @@ const EditArticle = () => {
 
               <label>Section image</label>
               <input defaultValue={section.section_image} readOnly/>
-              <img src={section.section_image} style={{width:"100%", marginTop:"10px"}}/>
+              <img src={section.section_image} style={{width:"100%", marginTop:"10px"}} alt=""/>
 
               <label htmlFor='section_img'>Change section image: </label>
               <input type="file" id='section_img' name='section_img' accept='image/*' multiple={false} onChange={(e)=> onOldSectionImageChange(e.target.files[0], section)}/>

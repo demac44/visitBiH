@@ -7,7 +7,7 @@ import ScreenLoader from '../../General/Loaders/ScreenLoader'
 import PlaceDescription from '../PlaceDescription/PlaceDescription'
 import GoogleMapsIframe from '../GoogleMapsIframe/GoogleMapsIframe'
 import PlaceTitle from '../PlaceTitle/PlaceTitle'
-
+import Error404 from "../../../Routes/404/Error404"
 
 const PlaceContainer = () => {
   const [place, setPlace] = useState({})
@@ -27,8 +27,11 @@ const PlaceContainer = () => {
       },
       withCredentials: true
     }).then(res => {setPlace(res.data[0]); setLoading(false)})
-  }, [])
+  }, [params?.place, params?.region])
 
+
+
+  if(!loading && !place) return <Error404/>
 
   return (
     <div className='place-container'>

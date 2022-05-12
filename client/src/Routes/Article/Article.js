@@ -10,9 +10,10 @@ import Footer from '../../Components/General/Footer/Footer'
 import ScreenLoader from '../../Components/General/Loaders/ScreenLoader'
 import ArticlesList from '../../Components/Articles/ArticlesList/ArticlesList'
 import StartExploring from "../../Components/General/StartExploring/StartExploring"
+import Error404 from '../404/Error404'
 
 const Article = () => {
-    const [article, setArticle] = useState({})
+    const [article, setArticle] = useState(null)
     const [loading, setLoading] = useState(true)
 
     const params = useParams()
@@ -31,6 +32,8 @@ const Article = () => {
         .then(() => setLoading(false))
     }, [params.title])
 
+
+    if (!loading && !article) return <Error404/>
 
     return (
         <>

@@ -32,7 +32,7 @@ const EditPlace = () => {
       setOldImages(res.data[0].images)
     })
     .then(() => setLoading(false))
-  }, [])
+  }, [params?.id])
 
   const onSubmit = async (e) => {
     e.preventDefault() 
@@ -45,7 +45,7 @@ const EditPlace = () => {
     for(let i = 0;i < filesLength; i++){
       let data = new FormData()
       data.append("file", newImages[i])
-      data.append("upload_preset", "z8oybloj")
+      data.append("upload_preset", "visitbih-image")
       data.append("cloud_name", "de5mm13ux")
       data.append("folder", "visitBiH - Places images")
       await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
@@ -148,7 +148,7 @@ const EditPlace = () => {
 
             <label>Card image</label>
             <input defaultValue={place.card_img} readOnly/> 
-            <img src={place.card_img} style={{width:"100%", marginTop:"10px"}}/>
+            <img src={place.card_img} style={{width:"100%", marginTop:"10px"}} alt=""/>
 
             <label htmlFor='card_img'>Change card image:</label>
             <input type="file" id='card_img' name='card_img' accept='image/*' multiple={false} onChange={(e)=>setCardImg(e.target.files[0])}/>
@@ -161,7 +161,7 @@ const EditPlace = () => {
                       <input defaultValue={image.image} placeholder="Image" readOnly/>
                       <i className='fas fa-times' onClick={() => removeImage(image.image)}></i>
                     </span>
-                    <img src={image.image}/>
+                    <img src={image.image} alt=""/>
                 </div>
               )}
 

@@ -6,7 +6,7 @@ const PlaceCard = ({place}) => {
   return (
     <Link to={"/explore/"+place.region+"/"+place.name} className='place-card'>
         <div className='place-card-overlay'></div>
-        <img src={place.card_img} className="card_image"/>
+        <img src={place.card_img} className="card_image" alt=""/>
         <h3>{place.name}</h3>
     </Link>
   )

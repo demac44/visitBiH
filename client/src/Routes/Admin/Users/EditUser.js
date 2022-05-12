@@ -19,7 +19,7 @@ const EditUser = () => {
             },
             withCredentials: true
         }).then(res => setUser(res.data))
-    }, [])
+    }, [params?.id])
 
     const onSubmit = (e) => {
         e.preventDefault()

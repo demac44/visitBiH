@@ -9,7 +9,7 @@ const ArticleSection = ({section}) => {
         <p>{section.section_text}</p>
         <hr/>
         <p>{section.section_image_description}</p>
-        <img src={section.section_image}/>
+        <img src={section.section_image} alt=""/>
         <hr/>
     </div>
   )

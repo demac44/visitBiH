@@ -25,7 +25,7 @@ const PlacesList = () => {
         .then(res => setPlaces(res.data))
         .then(() => setLoading(false))
         .catch(err => console.log(err))
-    }, [])
+    }, [params.region])
 
 
     return (

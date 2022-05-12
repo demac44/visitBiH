@@ -11,7 +11,7 @@ const SVGMap = () => {
     return  (
         <div className='svg-map-container'>
             <div className='display-region-name'><p>{regionName}</p></div>
-            <img src={bckg} className="svg-map-bckg"/>
+            <img src={bckg} className="svg-map-bckg" alt=""/>
             <div className='overlay'></div>
 
             <div className='svg-map-box'>

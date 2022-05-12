@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import "./style.css"
-import ScreenLoader from "../../General/Loaders/ScreenLoader"
 import ArticleCard from './ArticleCard/ArticleCard'
 import { Link } from 'react-router-dom'
 import SectionLoader from '../../General/Loaders/SectionLoader'

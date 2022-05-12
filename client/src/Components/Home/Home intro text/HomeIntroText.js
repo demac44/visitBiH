@@ -6,7 +6,7 @@ import ScrollDownBtn from '../Helpers/ScrollDownBtn'
 const HomeIntroText = () => {
   return (
     <div className='home-intro-text-container'>
-        <img src={bckg} className="home-intro-text-bckg"/>
+        <img src={bckg} className="home-intro-text-bckg" alt=""/>
         <div className='overlay'></div>
         <span className='home-intro-text'>
             <h1>The Heart-Shaped Land: Bosnia and Herzegovina</h1>

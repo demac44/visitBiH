@@ -6,7 +6,7 @@ const ArticleBanner = ({banner, title}) => {
   return (
     <div className='article-banner'>
         <div className='overlay'></div>
-        <img src={banner}/>
+        <img src={banner} alt=""/>
         <h1>{title}</h1>
         <ScrollDownBtn vh={1}/>
     </div>

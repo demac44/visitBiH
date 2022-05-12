@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import "./index.css"
 
 import Admin from './Routes/Admin/Admin';
-import AdminNavbar from './Components/Admin/AdminNavbar/AdminNavbar';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
