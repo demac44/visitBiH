@@ -7,8 +7,27 @@ import Place from './Routes/Place/Place';
 import Article from './Routes/Article/Article';
 import Articles from './Routes/Articles/Articles';
 import About from './Routes/About/About';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
+  function getCookie(name) {
+    let a = `; ${document.cookie}`.match(`;\\s*${name}=([^;]+)`);
+    return a ? a[1] : '';
+  }
+
+  useEffect(() => {
+    if(!getCookie) axios({
+      method: "POST",
+      url: "/api/lang",
+      data:{
+        lang: "english"
+      },
+      withCredentials: true
+    }).then(() => window.location.reload())
+  }, [])
+
+
   return (
       <Routes>
         <Route path='/' element={<Home/>}/>
