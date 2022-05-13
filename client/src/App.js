@@ -17,7 +17,7 @@ function App() {
   }
 
   useEffect(() => {
-    if(!getCookie) axios({
+    if(!getCookie("lang")) axios({
       method: "POST",
       url: "/api/lang",
       data:{
