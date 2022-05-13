@@ -6,7 +6,7 @@ import "./style.css"
 const PlaceItem = ({item}) => {
   return (
     <div className='item'>
-        <p>{item.name}</p>
+        <p>{item.name.english}</p>
         <Link to={"/admin/places/edit/"+item._id}><i className='fas fa-edit'></i></Link>
     </div>
   )

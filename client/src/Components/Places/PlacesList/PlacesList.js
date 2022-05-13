@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import "./style.css"
 
@@ -6,11 +6,15 @@ import axios from "axios"
 import PlaceCard from '../PlaceCard/PlaceCard'
 import ScreenLoader from '../../General/Loaders/ScreenLoader'
 
+import {LangContext} from "../../../index"
+
 const PlacesList = () => {
     const [places, setPlaces] = useState([])
     const [loading, setLoading] = useState(true)
 
     const params = useParams()
+
+    const lang = useContext(LangContext)
 
     useEffect(() => {
         setLoading(true)
@@ -33,7 +37,7 @@ const PlacesList = () => {
             <div className='places-overlay'></div>
             <div className='places-list'>
                 {loading ? <ScreenLoader/> 
-                : places.map(place => <PlaceCard place={place} key={place._id}/>)}
+                : places.map(place => <PlaceCard place={place} key={place._id} lang={lang}/>)}
             </div>
         </div>
     )

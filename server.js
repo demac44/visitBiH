@@ -5,10 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
   }
 
 
-
 import express from 'express'
-import path from 'path'
-import { fileURLToPath } from 'url'
 import { join, resolve } from 'path'
 import cors from "cors"
 import cookieParser from "cookie-parser"
@@ -17,6 +14,9 @@ import place from "./routes/api/place.js"
 import article from "./routes/api/article.js"
 import user from "./routes/api/user.js"
 import auth from "./routes/api/auth.js"
+import test from "./routes/api/test.js"
+import lang from "./routes/api/language.js"
+
 
 import mongoose from 'mongoose'
 
@@ -56,6 +56,8 @@ app.use("/api/places", place)
 app.use("/api/articles", article)
 app.use("/api/users", user)
 app.use("/api/auth", auth)
+app.use("/api/test", test)
+app.use("/api/lang", lang)
 
 app.get("*", (req, res) => {
     res.sendFile(join(__dirname, "client", "build", "index.html"))

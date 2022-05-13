@@ -17,7 +17,7 @@ router.get("/",  async (req, res) => {
 router.post("/place", async (req, res) => {
     let data = []
 
-    await Place.find({name: req.body.name, region: req.body.region})
+    await Place.find({_id: req.body.id})
     .then(response => data = response)
 
     res.json(data)

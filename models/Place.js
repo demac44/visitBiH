@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 let placeSchema = mongoose.Schema({
     name: {
-        type: String,
+        type: Object,
         required: true
     },
     city: {
@@ -19,7 +19,7 @@ let placeSchema = mongoose.Schema({
         required: true
     },
     description: {
-        type: String,
+        type: Object,
         required: true
     },
     images:{

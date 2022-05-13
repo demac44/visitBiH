@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./style.css"
 import axios from "axios"
 import { useParams } from 'react-router-dom'
@@ -9,10 +9,13 @@ import GoogleMapsIframe from '../GoogleMapsIframe/GoogleMapsIframe'
 import PlaceTitle from '../PlaceTitle/PlaceTitle'
 import Error404 from "../../../Routes/404/Error404"
 
+import {LangContext} from "../../../index"
+
 const PlaceContainer = () => {
   const [place, setPlace] = useState({})
   const [loading, setLoading] = useState(true)
 
+  const lang = useContext(LangContext)
 
   const params = useParams()
 
@@ -22,12 +25,11 @@ const PlaceContainer = () => {
       method: "POST",
       url: "/api/places/place",
       data:{
-        name: params.place,
-        region: params.region
+        id: params.id
       },
       withCredentials: true
     }).then(res => {setPlace(res.data[0]); setLoading(false)})
-  }, [params?.place, params?.region])
+  }, [params?.id])
 
 
 
@@ -38,9 +40,9 @@ const PlaceContainer = () => {
       <div className='places-overlay'></div>
       {loading ? <ScreenLoader/> :
       <>
-        <PlaceTitle name={place.name} city={place.city}/>
+        <PlaceTitle name={place.name[lang]} city={place.city}/>
         <ImageSlider images={place.images}/>    
-        <PlaceDescription description={place.description}/> 
+        <PlaceDescription description={place.description[lang]}/> 
         <GoogleMapsIframe iframe={place.location.google_maps_iframe} link={place.location.google_maps_link}/>
       </>
       }

@@ -72,10 +72,18 @@ const EditPlace = () => {
       url: '/api/places/edit',
       data:{
         id: params.id,
-        name: e.target.name.value,
+        name: {
+          english: e.target.name_en.value,
+          bosnian: e.target.name_bs.value,
+          arabic: e.target.name_ar.value,
+        },
         region: e.target.region.value,
         city: e.target.city.value,
-        description: e.target.description.value,
+        description: {
+          english: e.target.desc_en.value,
+          bosnian: e.target.desc_bs.value,
+          arabic: e.target.desc_ar.value,
+        },
         gm_iframe: e.target.google_maps_iframe.value,
         gm_link: e.target.google_maps_link.value,
         images: imgURLs,
@@ -114,11 +122,13 @@ const EditPlace = () => {
       <div className='admin_main'>
           <div className='admin_section_title'>
             <h2>
-              Edit {place.name}
+              Edit {place.name.english}
             </h2>
           </div>
           <form method='POST' onSubmit={onSubmit} className="admin_add_form">
-            <input required name='name' id='name' placeholder='Name' defaultValue={place.name}/>
+            <input required name='name_en' id='name' placeholder='Name (english)' defaultValue={place?.name?.english}/>
+            <input required name='name_bs' id='name' placeholder='Name (bosnian)' defaultValue={place?.name?.bosnian}/>
+            <input required name='name_ar' id='name' placeholder='Name (arabic)' defaultValue={place?.name?.arabic}/>
             <select name='region' required defaultValue={place.region}>
               <option value="Sarajevo">Sarajevo</option>
               <option value="West Bosnia">West Bosnia</option>
@@ -140,7 +150,10 @@ const EditPlace = () => {
               <option value="Trebinje">Trebinje</option>
             </select>                                       
             <input required name='city' id='city' placeholder='City' defaultValue={place.city}/>                                        
-            <textarea required name='description' id='description' placeholder='Description' defaultValue={place.description}/>    
+            <textarea required name='desc_en' id='description' placeholder='Description (english)' defaultValue={place?.description?.english}/>   
+            <textarea required name='desc_bs' id='description' placeholder='Description (bosnian)' defaultValue={place?.description?.bosnian}/>    
+            <textarea required name='desc_ar' id='description' placeholder='Description (arabic)' defaultValue={place?.description?.arabic}/>    
+
 
             <label>Location</label>
             <input required name='google_maps_iframe' id='google_maps_iframe' placeholder='Google maps iframe' defaultValue={place.location.google_maps_iframe}/> 

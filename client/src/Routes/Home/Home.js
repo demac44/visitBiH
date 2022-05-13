@@ -8,8 +8,8 @@ import Footer from '../../Components/General/Footer/Footer'
 import ArticlesList from '../../Components/Articles/ArticlesList/ArticlesList'
 import StartExploring from '../../Components/General/StartExploring/StartExploring'
 
-
 const Home = () => {
+
   return (
     <div className='home-container'>
       <Navbar/>

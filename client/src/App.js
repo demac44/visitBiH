@@ -10,15 +10,15 @@ import About from './Routes/About/About';
 
 function App() {
   return (
-     <Routes>
-       <Route path='/' element={<Home/>}/>
-       <Route path='/explore' element={<Explore/>}/>
-       <Route path='/explore/:region' element={<Places/>}/>
-       <Route path='/explore/:region/:place' element={<Place/>}/>
-       <Route path='/article/:title' element={<Article/>}/>
-       <Route path='/articles' element={<Articles/>}/>
-       <Route path='/about' element={<About/>}/>
-    </Routes>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/explore' element={<Explore/>}/>
+        <Route path='/explore/:region' element={<Places/>}/>
+        <Route path='/explore/:region/:id/:place' element={<Place/>}/>
+        <Route path='/article/:title' element={<Article/>}/>
+        <Route path='/articles' element={<Articles/>}/>
+        <Route path='/about' element={<About/>}/>
+      </Routes>
   );
 }
 

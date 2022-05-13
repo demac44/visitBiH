@@ -42,10 +42,18 @@ const AddPlace = () => {
       method: 'POST',
       url: '/api/places',
       data:{
-        name: e.target.name.value,
+        name: {
+          english: e.target.name_en.value,
+          bosnian: e.target.name_bs.value,
+          arabic: e.target.name_ar.value,
+        },        
         region: e.target.region.value,
         city: e.target.city.value,
-        description: e.target.description.value,
+        description: {
+          english: e.target.desc_en.value,
+          bosnian: e.target.desc_bs.value,
+          arabic: e.target.desc_ar.value,
+        },        
         gm_iframe: e.target.google_maps_iframe.value,
         gm_link: e.target.google_maps_link.value,
         images: imgURLs,
@@ -68,7 +76,9 @@ const AddPlace = () => {
             </h2>
           </div>
           <form method='POST' onSubmit={onSubmit} className="admin_add_form">
-            <input required name='name' id='name' placeholder='Name'/>
+            <input required name='name_en' id='name' placeholder='Name (english)'/>
+            <input required name='name_bs' id='name' placeholder='Name (bosnian)'/>
+            <input required name='name_ar' id='name' placeholder='Name (arabic)'/>
             <select name='region' required>
               <option value="Sarajevo">Sarajevo</option>
               <option value="West Bosnia">West Bosnia</option>
@@ -90,7 +100,9 @@ const AddPlace = () => {
               <option value="Trebinje">Trebinje</option>
             </select>                                       
             <input required name='city' id='city' placeholder='City'/>                                        
-            <input required name='description' id='description' placeholder='Description'/>     
+            <textarea required name='desc_en' id='description' placeholder='Description (english)'/>   
+            <textarea required name='desc_bs' id='description' placeholder='Description (bosnian)'/>    
+            <textarea required name='desc_ar' id='description' placeholder='Description (arabic)'/>                
             <input required name='google_maps_iframe' id='google_maps_iframe' placeholder='Google maps iframe'/> 
             <input required name='google_maps_link' id='google_maps_link' placeholder='Google maps link'/>     
 
