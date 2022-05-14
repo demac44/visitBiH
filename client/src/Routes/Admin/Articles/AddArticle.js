@@ -7,11 +7,18 @@ const AddArticle = () => {
   const [loading, setLoading] = useState(false)
   const [bannerImg, setBannerImg] = useState({})
   const [sections, setSections] = useState([{
-    sectionID: 0,
-    section_title: "",
     section_image: "",
-    section_text: "",
-    section_image_description: "",
+    section_id: 0,
+    english:{
+      section_title: "",
+      section_text: "",
+      section_image_description: "",
+    },
+    bosnian:{
+      section_title: "",
+      section_text: "",
+      section_image_description: "",
+    }
   }])
 
 
@@ -73,9 +80,18 @@ const AddArticle = () => {
       method: "POST",
       url: '/api/articles',
       data:{
-        title: e.target.title.value,
-        intro_title: e.target.intro_title.value,
-        intro_text: e.target.intro_text.value,
+        title: {
+          english: e.target.title_en.value,
+          bosnian: e.target.title_bs.value
+        },
+        intro_title: {
+          english: e.target.intro_title_en.value,
+          bosnian: e.target.intro_title_bs.value
+        },
+        intro_text: {
+          english: e.target.intro_text_en.value,
+          bosnian: e.target.intro_text_bs.value
+        },
         banner: bannerLink,
         card_image: cardImgLink,  
         sections: sections
@@ -86,14 +102,14 @@ const AddArticle = () => {
     .catch(err => console.log(err))
   }
 
-  const onChange = (value, name, section) => {
+  const onChange = (value, name, section, lang) => {
     let copy = sections
     let i = 0
     sections.forEach(s => {
-      if(s.sectionID === section.sectionID){
-        if(name === "section_title") copy[i].section_title = value
-        else if (name === "section_text") copy[i].section_text = value
-        else if (name === "img_desc") copy[i].section_image_description = value
+      if(s.section_id === section.section_id){
+        if(name === "section_title") copy[i][lang].section_title = value
+        else if (name === "section_text") copy[i][lang].section_text = value
+        else if (name === "img_desc") copy[i][lang].section_image_description = value
         return
       }
       i++
@@ -105,7 +121,7 @@ const AddArticle = () => {
     let copy = sections
     let i = 0
     sections.forEach(s => {
-      if(s.sectionID === section.sectionID){
+      if(s.section_id === section.section_id){
         copy[i].section_image = file
         return
       }
@@ -117,8 +133,8 @@ const AddArticle = () => {
   const removeSection = (sectionID) => {
     let copy = sections
     for(let i = 0; i < sections.length; i++){
-      if(copy[i].sectionID===sectionID){
-        copy = copy.filter(s => {return s.sectionID !== sectionID})
+      if(copy[i].section_id===sectionID){
+        copy = copy.filter(s => {return s.section_id !== sectionID})
         setSections(copy)
         return
       }
@@ -139,9 +155,15 @@ const AddArticle = () => {
           </div>
           <form method='POST' onSubmit={onSubmit} className="admin_add_form">
 
-            <input required name='title' id='title' placeholder='Title'/>                   
-            <input required name='intro_title' id='intro_title' placeholder='Intro title'/>        
-            <input required name='intro_text' id='intro_text' placeholder='Intro text'/>        
+            <input required name='title_en' id='title_en' placeholder='Title (english)'/>    
+            <input required name='title_bs' id='title_bs' placeholder='Title (bosnian)'/>                   
+
+            <input required name='intro_title_en' id='intro_title_en' placeholder='Intro title (english)'/>     
+            <input required name='intro_title_bs' id='intro_title_bs' placeholder='Intro title (bosnian)'/>        
+
+            <input required name='intro_text_en' id='intro_text_en' placeholder='Intro text (english)'/>      
+            <input required name='intro_text_bs' id='intro_text_bs' placeholder='Intro text (bosnian)'/>        
+
 
             <label htmlFor='banner'>Add banner image: </label>
             <input required type="file" id='banner' name='banner' accept='image/*' multiple={false} onChange={(e)=>setBannerImg(e.target.files[0])}/>
@@ -152,29 +174,42 @@ const AddArticle = () => {
 
 
             {/* SECTIONS */}
-            {sections.map((section) => <div key={section.sectionID} className='admin_add_article_section'>
+            {sections.map((section) => <div key={section.section_id} className='admin_add_article_section'>
 
-              <span onClick={() => removeSection(section.sectionID)} className='remove-section-btn'><i className='fas fa-times'></i></span>
+              <span onClick={() => removeSection(section.section_id)} className='remove-section-btn'><i className='fas fa-times'></i></span>
 
               <label >Section: </label>
 
-              <input required name='section_title' id='section_title' onChange={(e) => onChange(e.target.value, "section_title", section)} placeholder='Title'/>                                      
-              <textarea required name='section_text' onChange={(e) => onChange(e.target.value, "section_text", section)} id='section_text' placeholder='Section text'/>                                      
+              <input required name='section_title_en' id='section_title_en' onChange={(e) => onChange(e.target.value, "section_title", section, "english")} placeholder='Title (english)'/>    
+              <input required name='section_title_bs' id='section_title_bs' onChange={(e) => onChange(e.target.value, "section_title", section, "bosnian")} placeholder='Title (bosnian)'/>                                      
+
+              <textarea required name='section_text_en' onChange={(e) => onChange(e.target.value, "section_text", section, "english")} id='section_text_en' placeholder='Section text (english)'/>
+              <textarea required name='section_text_bs' onChange={(e) => onChange(e.target.value, "section_text", section, "bosnian")} id='section_text_bs' placeholder='Section text (bosnian)'/>                                      
+
 
 
               <label htmlFor='section_img'>Add section image: </label>
               <input required type="file" id='section_img' name='section_img' accept='image/*' multiple={false} onChange={(e)=> onBannerImageChange(e.target.files[0], section)}/>
 
-              <input required name='section_image_description' onChange={(e) => onChange(e.target.value, "img_desc", section)} id='section_image_description' placeholder='Image description'/>                                      
+              <input required name='section_image_description_en' onChange={(e) => onChange(e.target.value, "img_desc", section, "english")} id='section_image_description_en' placeholder='Image description (english)'/>                                      
+              <input required name='section_image_description_bs' onChange={(e) => onChange(e.target.value, "img_desc", section, "bosnian")} id='section_image_description_bs' placeholder='Image description (bosnian)'/>                                      
+            
             </div>)}
 
 
             <div className='add-new-section-btn' onClick={() => setSections([...sections, {
-                  sectionID: sections.length+2,
-                  section_title: "",
+                  section: sections.length+2,
                   section_image: "",
-                  section_text: "",
-                  section_image_description: "",
+                  english:{
+                    section_title: "",
+                    section_text: "",
+                    section_image_description: "",
+                  },
+                  bosnian:{
+                    section_title: "",
+                    section_text: "",
+                    section_image_description: "",
+                  }
             }])}><i className='fas fa-plus'></i> NEW SECTION</div>
 
 

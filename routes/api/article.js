@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/article", async (req, res) => {
-    Article.findOne({title: req.body.title})
+    Article.findOne({_id: req.body.id})
     .then(response => res.json(response))
 })
 

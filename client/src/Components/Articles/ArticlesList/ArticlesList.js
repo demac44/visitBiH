@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import SectionLoader from '../../General/Loaders/SectionLoader'
 
 
-const ArticlesList = () => {
+const ArticlesList = ({lang}) => {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -23,12 +23,12 @@ const ArticlesList = () => {
             <div className='articles-list-container'>
             {loading ? <SectionLoader/> :
             <>
-                <h1>FIND OUT MORE ABOUT BOSNIA AND HERZEGOVINA</h1>
+                <h1>{lang==="english" ? "FIND OUT MORE ABOUT BOSNIA AND HERZEGOVINA" : "SAZNAJ VIŠE O BOSNI I HERCEGOVINI"}</h1>
                 <div className='overlay'></div>
                 <div className='articles-list'>
-                    {articles.map(article => <ArticleCard article={article} key={article._id}/>)}
+                    {articles.map(article => <ArticleCard article={article} lang={lang} key={article._id}/>)}
                     <Link to="/articles" className='articles-list-see-more'>
-                        <h2>Read more</h2>
+                        <h2>{lang==="english" ? "Read more" : "Čitaj više"}</h2>
                     </Link>
                 </div>
             </>}

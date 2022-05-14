@@ -5,7 +5,7 @@ import "./style.css"
 const ArticleItem = ({item}) => {
   return (
     <div className='item'>
-        <p>{item.title}</p>
+        <p>{item.title.english}</p>
         <Link to={"/admin/articles/edit/"+item._id}><i className='fas fa-edit'></i></Link>
     </div>
   )

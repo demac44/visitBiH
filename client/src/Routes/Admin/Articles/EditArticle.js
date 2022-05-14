@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import AdminNavbar from '../../../Components/Admin/AdminNavbar/AdminNavbar'
 import ConfirmDelete from '../../../Components/Admin/Confirmation box/ConfirmDelete'
@@ -45,6 +45,7 @@ const EditArticle = () => {
           copy[i].section_image = res.data.secure_url
           setOldSections(copy)
         })
+        .catch(err => console.log(err))
       }
     }
   }
@@ -54,7 +55,7 @@ const EditArticle = () => {
       let copy = newSections
       let data = new FormData()
       data.append("file", newSections[i].section_image)
-      data.append("upload_preset", "visitbih-images")
+      data.append("upload_preset", "visitbih-image")
       data.append("cloud_name", "de5mm13ux")
       data.append("folder", "visitBiH - Article section images")
       await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
@@ -62,6 +63,7 @@ const EditArticle = () => {
         copy[i].section_image = res.data.secure_url
         setNewSections(copy)
       })
+      .catch(err => console.log(err))
     }
   }
 
@@ -114,9 +116,18 @@ const EditArticle = () => {
       url:'/api/articles/article/edit',
       data:{
         id: params.id,
-        title: e.target.title.value,
-        intro_title: e.target.intro_title.value,
-        intro_text: e.target.intro_text.value,
+        title: {
+          english: e.target.title_en.value,
+          bosnian: e.target.title_bs.value
+        },
+        intro_title: {
+          english: e.target.intro_title_en.value,
+          bosnian: e.target.intro_title_bs.value
+        },
+        intro_text: {
+          english: e.target.intro_text_en.value,
+          bosnian: e.target.intro_text_bs.value
+        },
         card_image: cardImgLink,
         banner: bannerLink,
         sections: sections
@@ -127,14 +138,14 @@ const EditArticle = () => {
     .catch(err => console.log(err))
   }
 
-  const onChangeOldSections = (value, name, section) => {
+  const onChangeOldSections = (value, name, section, lang) => {
     let copy = oldSections
     let i = 0
     oldSections.forEach(s => {
-      if(s.sectionID === section.sectionID){
-        if(name === "section_title") copy[i].section_title = value
-        else if (name === "section_text") copy[i].section_text = value
-        else if (name === "img_desc") copy[i].section_image_description = value
+      if(s.section_id === section.section_id){
+        if(name === "section_title") copy[i][lang].section_title = value
+        else if (name === "section_text") copy[i][lang].section_text = value
+        else if (name === "img_desc") copy[i][lang].section_image_description = value
         return
       }
       i++
@@ -142,14 +153,14 @@ const EditArticle = () => {
     setOldSections(copy)
   }
 
-  const onChangeNewSections = (value, name, section) => {
+  const onChangeNewSections = (value, name, section, lang) => {
     let copy = newSections
     let i = 0
     newSections.forEach(s => {
-      if(s.sectionID === section.sectionID){
-        if(name === "section_title") copy[i].section_title = value
-        else if (name === "section_text") copy[i].section_text = value
-        else if (name === "img_desc") copy[i].section_image_description = value
+      if(s.section_id === section.section_id){
+        if(name === "section_title") copy[i][lang].section_title = value
+        else if (name === "section_text") copy[i][lang].section_text = value
+        else if (name === "img_desc") copy[i][lang].section_image_description = value
         return
       }
       i++
@@ -161,7 +172,7 @@ const EditArticle = () => {
     let copy = oldSections
     let i = 0
     oldSections.forEach(s => {
-      if(s.sectionID === section.sectionID){
+      if(s.section_id === section.section_id){
         copy[i].section_image = file
         copy[i].changed = true
         return
@@ -174,7 +185,7 @@ const EditArticle = () => {
     let copy = newSections
     let i = 0
     newSections.forEach(s => {
-      if(s.sectionID === section.sectionID){
+      if(s.section_id === section.section_id){
         copy[i].section_image = file
         return
       }
@@ -188,8 +199,8 @@ const EditArticle = () => {
 
   const removeOldSection = (sectionID) => {
     for(let i = 0;i < oldSections.length; i++){
-      if(oldSections[i].sectionID===sectionID){
-        let copy = oldSections.filter(s => {return s.sectionID !== sectionID})
+      if(oldSections[i].section_id===sectionID){
+        let copy = oldSections.filter(s => {return s.section_id !== sectionID})
         setOldSections(copy)
         return
       }
@@ -198,8 +209,8 @@ const EditArticle = () => {
 
   const removeNewSection = (sectionID) => {
     for(let i = 0;i < newSections.length; i++){
-      if(newSections[i].sectionID===sectionID){
-        let copy = newSections.filter(s => {return s.sectionID !== sectionID})
+      if(newSections[i].section_id===sectionID){
+        let copy = newSections.filter(s => {return s.section_id !== sectionID})
         setNewSections(copy)
         return
       }
@@ -227,9 +238,12 @@ const EditArticle = () => {
           </div>
           <form method='POST' onSubmit={onSubmit} className="admin_add_form">
 
-            <input required name='title' id='title' placeholder='Title' defaultValue={article.title}/>                   
-            <input required name='intro_title' id='intro_title' placeholder='Intro title' defaultValue={article.intro_title}/>        
-            <textarea required name='intro_text' id='intro_text' placeholder='Intro text' defaultValue={article.intro_text}/>       
+            <input required name='title_en' id='title_en' placeholder='Title (english)' defaultValue={article.title.english}/>
+            <input required name='title_bs' id='title_bs' placeholder='Title (bosnian)' defaultValue={article.title.bosnian}/>     
+            <input required name='intro_title_en' id='intro_title_en' placeholder='Intro title (english)' defaultValue={article.intro_title.english}/>   
+            <input required name='intro_title_bs' id='intro_title_bs' placeholder='Intro title (bosnian)' defaultValue={article.intro_title.bosnian}/>        
+            <textarea required name='intro_text_en' id='intro_text_en' placeholder='Intro text (english)' defaultValue={article.intro_text.english}/>     
+            <textarea required name='intro_text_bs' id='intro_text_bs' placeholder='Intro text (bosnian)' defaultValue={article.intro_text.bosnian}/>       
             
             <label>Banner image</label>
             <input defaultValue={article.banner} readOnly/>
@@ -244,15 +258,19 @@ const EditArticle = () => {
 
 
             {/* SECTIONS */}
-            {oldSections.map(section => <div key={section.sectionID} className='admin_add_article_section'>
+            {oldSections.map(section => <div key={section.section_id} className='admin_add_article_section'>
 
-              <span onClick={() => removeOldSection(section.sectionID)} className='remove-section-btn'><i className='fas fa-times'></i></span>
+              <span onClick={() => removeOldSection(section.section_id)} className='remove-section-btn'><i className='fas fa-times'></i></span>
 
 
               <label >Section: </label>
 
-              <input required name='section_title' id='section_title' onChange={(e) => onChangeOldSections(e.target.value, "section_title", section)} placeholder='Title' defaultValue={section.section_title}/>                                      
-              <textarea required name='section_text' onChange={(e) => onChangeOldSections(e.target.value, "section_text", section)} id='section_text' placeholder='Section text' defaultValue={section.section_text}/>                                      
+              <input required name='section_title_en' id='section_title_en' onChange={(e) => onChangeOldSections(e.target.value, "section_title", section, "english")} placeholder='Title (english)' defaultValue={section["english"]?.section_title}/>
+              <input required name='section_title_bs' id='section_title_bs' onChange={(e) => onChangeOldSections(e.target.value, "section_title", section, "bosnian")} placeholder='Title (bosnian)' defaultValue={section["bosnian"]?.section_title}/>                                      
+
+              
+              <textarea required name='section_text_en' onChange={(e) => onChangeOldSections(e.target.value, "section_text", section, "english")} id='section_text_en' placeholder='Section text (english)' defaultValue={section["english"]?.section_text}/>                                      
+              <textarea required name='section_text_bs' onChange={(e) => onChangeOldSections(e.target.value, "section_text", section, "bosnian")} id='section_text_bs' placeholder='Section text (bosnian)' defaultValue={section["bosnian"]?.section_text}/>                                      
 
               <label>Section image</label>
               <input defaultValue={section.section_image} readOnly/>
@@ -261,33 +279,47 @@ const EditArticle = () => {
               <label htmlFor='section_img'>Change section image: </label>
               <input type="file" id='section_img' name='section_img' accept='image/*' multiple={false} onChange={(e)=> onOldSectionImageChange(e.target.files[0], section)}/>
 
-              <input required name='section_image_description' onChange={(e) => onChangeOldSections(e.target.value, "img_desc", section)} id='section_image_description' placeholder='Image description' defaultValue={section.section_image_description}/>                                      
+              <input required name='section_image_description_en' onChange={(e) => onChangeOldSections(e.target.value, "img_desc", section, "english")} id='section_image_description_en' placeholder='Image description (english)' defaultValue={section["english"]?.section_image_description}/>                                      
+              <input required name='section_image_description_bs' onChange={(e) => onChangeOldSections(e.target.value, "img_desc", section, "bosnian")} id='section_image_description_bs' placeholder='Image description (bosnian)' defaultValue={section["bosnian"]?.section_image_description}/>                                      
+            
             </div>)}
 
-            {newSections.map(section => <div key={section.sectionID} className='admin_add_article_section'>
+            {newSections.map(section => <div key={section.section_id} className='admin_add_article_section'>
 
-              <span onClick={() => removeNewSection(section.sectionID)} className='remove-section-btn'><i className='fas fa-times'></i></span>
+              <span onClick={() => removeNewSection(section.section_id)} className='remove-section-btn'><i className='fas fa-times'></i></span>
 
 
               <label >Section: </label>
 
-              <input required name='section_title' id='section_title' onChange={(e) => onChangeNewSections(e.target.value, "section_title", section)} placeholder='Title'/>                                      
-              <textarea required name='section_text' onChange={(e) => onChangeNewSections(e.target.value, "section_text", section)} id='section_text' placeholder='Section text'/>                                      
+              <input required name='section_title_en' id='section_title_en' onChange={(e) => onChangeNewSections(e.target.value, "section_title", section, "english")} placeholder='Title (english)'/>
+              <input required name='section_title_bs' id='section_title_bs' onChange={(e) => onChangeNewSections(e.target.value, "section_title", section, "bosnian")} placeholder='Title (bosnian)'/>                                      
+
+              <textarea required name='section_text_en' onChange={(e) => onChangeNewSections(e.target.value, "section_text", section, "english")} id='section_text' placeholder='Section text (english)'/> 
+              <textarea required name='section_text_bs' onChange={(e) => onChangeNewSections(e.target.value, "section_text", section, "bosnian")} id='section_text' placeholder='Section text (bosnian)'/>                                      
+
 
               <label htmlFor='section_img'>Add section image: </label>
               <input required type="file" id='section_img' name='section_img' accept='image/*' multiple={false} onChange={(e)=> onNewSectionImageChange(e.target.files[0], section)}/>
 
-              <input required name='section_image_description' onChange={(e) => onChangeNewSections(e.target.value, "img_desc", section)} id='section_image_description' placeholder='Image description'/>                                      
+              <input required name='section_image_description_en' onChange={(e) => onChangeNewSections(e.target.value, "img_desc", section, "english")} id='section_image_description_en' placeholder='Image description (english)'/>  
+              <input required name='section_image_description_bs' onChange={(e) => onChangeNewSections(e.target.value, "img_desc", section, "bosnian")} id='section_image_description_bs' placeholder='Image description (bosnian)'/>                                      
+
             </div>)}
 
 
             <div className='add-new-section-btn' onClick={() => setNewSections([...newSections, {
-                  sectionID: oldSections.length+newSections.length+2,
-                  section_title: "",
+                  section_id: oldSections.length+newSections.length+2,
                   section_image: "",
-                  section_text: "",
-                  section_image_description: "",
-            }])}><i className='fas fa-plus'></i> NEW SECTION</div>
+                  english: {
+                    section_title: "",
+                    section_text: "",
+                    section_image_description: ""},
+                  bosnian: {
+                    section_title: "",
+                    section_text: "",
+                    section_image_description: ""},
+            }])
+            }><i className='fas fa-plus'></i> NEW SECTION</div>
 
 
             <button type='submit' className='admin_add_btn'>SAVE</button>                                   

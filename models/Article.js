@@ -3,19 +3,19 @@ import mongoose from "mongoose";
 
 let articleSchema = mongoose.Schema({
     title: {
-        type: String,
+        type: Object,
         required: true
     },
     intro_text: {
-        type: String,
+        type: Object,
         required: true
     },
     intro_title:{
-        type: String,
+        type: Object,
         required: true
     },
     banner: {
-        type: String,
+        type: Object,
         required: true
     },
     sections:{

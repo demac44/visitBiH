@@ -13,19 +13,19 @@ import BannerText from './BannerText'
 import ScrollDownBtn from '../Helpers/ScrollDownBtn'
 
 
-const Banner = () => {
+const Banner = ({lang}) => {
     const [currentImage, setCurrentImage] = useState(0)
 
 
     const slides = [
-        {image: image1, text: "Land of history", welcome: "Dobro došli"},
-        {image: image2, text: "Land of history", welcome: "Welcome"},
-        {image: image3, text: "The blue heart of Europe", welcome: "أهلا بك"},
-        {image: image5, text: "The blue heart of Europe", welcome: "Добро пожаловать"},
-        {image: image4, text: "Where east meets west", welcome: "Willkommen"},
-        {image: image6, text: "Where east meets west", welcome: "Hoşgeldiniz"},
-        {image: image7, text: "Land of mountains", welcome: "欢迎"},
-        {image: image8, text: "Land of mountains", welcome: "Benvenuto"},
+        {image: image1, text_bs: "Zemlja historije", text_en: "Land of history", welcome: "Dobro došli"},
+        {image: image2, text_bs: "Zemlja historije", text_en: "Land of history", welcome: "Welcome"},
+        {image: image3, text_bs: "Plavo srce Europe", text_en: "The blue heart of Europe", welcome: "أهلا بك"},
+        {image: image5, text_bs: "Plavo srce Europe", text_en: "The blue heart of Europe", welcome: "Добро пожаловать"},
+        {image: image4, text_bs: "Gdje se istok susreće sa zapadom", text_en: "Where east meets west", welcome: "Willkommen"},
+        {image: image6, text_bs: "Gdje se istok susreće sa zapadom", text_en: "Where east meets west", welcome: "Hoşgeldiniz"},
+        {image: image7, text_bs: "Zemlja planina", text_en: "Land of mountains", welcome: "欢迎"},
+        {image: image8, text_bs: "Zemlja planina", text_en: "Land of mountains", welcome: "Benvenuto"},
     ]
 
     useEffect(()=>{
@@ -53,7 +53,7 @@ const Banner = () => {
             <ScrollDownBtn vh={1}/>
             <div className='home-banner-overlay'></div>
             <img src={slides[currentImage].image} className="banner-image" alt="Banner"/>
-            <BannerText text={slides[currentImage].text} welcome={slides[currentImage].welcome}/>
+            <BannerText text={lang==="english" ? slides[currentImage].text_en : slides[currentImage].text_bs} welcome={slides[currentImage].welcome} lang={lang}/>
         </div>
       </>
   )

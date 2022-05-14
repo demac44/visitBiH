@@ -1,9 +1,11 @@
 import axios from 'axios'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom"
 
 import Logo from '../Logo/Logo'
 import "./style.css"
+
+import { LangContext } from "../../../index"
 
 const Navbar = () => {
 
@@ -11,6 +13,8 @@ const Navbar = () => {
     let a = `; ${document.cookie}`.match(`;\\s*${name}=([^;]+)`);
     return a ? a[1] : '';
   }
+
+  const lang = useContext(LangContext)
 
 
   const changeLanguage = (lang) => {
@@ -30,9 +34,20 @@ const Navbar = () => {
     <div className='navbar'>
       <Logo/>
       <span className='navbar-links'>
-        <Link to="/">HOME</Link>
-        <Link to="/explore">EXPLORE</Link>
-        <Link to="/about">ABOUT</Link>
+        {lang === "english" ? 
+        <>
+          <Link to="/">HOME</Link>
+          <Link to="/explore">EXPLORE</Link>
+          <Link to="/about">ABOUT</Link>
+        </>
+        :
+        <>
+          <Link to="/">POČETNA</Link>
+          <Link to="/explore">ISTRAŽI</Link>
+          <Link to="/about">INFO</Link>
+        </>
+
+      }
         <select className='choose-language' onChange={(e) => changeLanguage(e.target.value)} defaultValue={getCookie("lang")}>
           <option value="english">English</option>
           <option value="bosnian">Bosanski</option>

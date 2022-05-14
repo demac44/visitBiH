@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import Navbar from '../../Components/General/Navbar/Navbar'
 import "./style.css"
 import axios from "axios"
@@ -12,9 +12,15 @@ import ArticlesList from '../../Components/Articles/ArticlesList/ArticlesList'
 import StartExploring from "../../Components/General/StartExploring/StartExploring"
 import Error404 from '../404/Error404'
 
+import { LangContext }from "../../index"
+
+
 const Article = () => {
     const [article, setArticle] = useState(null)
     const [loading, setLoading] = useState(true)
+
+    const lang = useContext(LangContext)
+
 
     const params = useParams()
 
@@ -24,7 +30,7 @@ const Article = () => {
             method: "POST",
             url: "/api/articles/article",
             data:{
-                title: params.title
+                id: params.id
             },
             withCredentials: true
         })
@@ -40,11 +46,11 @@ const Article = () => {
             {loading ? <ScreenLoader/> : 
             <>
                 <Navbar/>
-                <ArticleBanner title={article.title} banner={article.banner}/>
-                <ArticleIntroText title={article.intro_title} text={article.intro_text}/>
-                <ArticleSections sections={article.sections}/>
-                <ArticlesList/>
-                <StartExploring/>
+                <ArticleBanner title={article.title[lang]} banner={article.banner}/>
+                <ArticleIntroText title={article.intro_title[lang]} text={article.intro_text[lang]}/>
+                <ArticleSections sections={article.sections} lang={lang}/>
+                <ArticlesList lang={lang}/>
+                <StartExploring lang={lang}/>
                 <Footer/>
             </>}
         </>
