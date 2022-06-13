@@ -23,6 +23,7 @@ const AdminNavbar = () => {
             <Link to="/admin/dashboard"><li>Dashboard</li></Link>
             <Link to="/admin/places"><li>Places</li></Link>
             <Link to="/admin/articles"><li>Articles</li></Link>
+            <Link to="/admin/ads"><li>Ads</li></Link>
             <Link to="/admin/users"><li>Users</li></Link>
             <li onClick={logout} className='log-out-btn'><p>LOG OUT</p></li>
           </ul>

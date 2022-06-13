@@ -15,6 +15,9 @@ import axios from 'axios'
 import AllUsers from './Users/AllUsers'
 import AddUser from './Users/AddUser'
 import EditUser from './Users/EditUser'
+import AllAds from './Ads/AllAds'
+import AddAd from './Ads/AddAd'
+import EditAd from './Ads/EditAd'
 
 
 const Admin = () => {
@@ -57,9 +60,13 @@ const Admin = () => {
             <Route path="articles/edit/:id" element={<EditArticle/>}/>
             <Route path="articles/add" element={<AddArticle/>}/>
 
-            <Route path="users" element={<AllUsers/>}/>
+             <Route path="users" element={<AllUsers/>}/>
             <Route path="users/add" element={<AddUser/>}/>
-            <Route path="users/edit/:id" element={<EditUser/>}/>            
+            <Route path="users/edit/:id" element={<EditUser/>}/>           
+
+            <Route path="ads" element={<AllAds/>}/>
+            <Route path="ads/add" element={<AddAd/>}/>
+            <Route path="ads/edit/:id" element={<EditAd/>}/>          
 
           </Route>}
       </Routes>

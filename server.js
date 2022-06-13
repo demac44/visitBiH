@@ -15,7 +15,7 @@ import article from "./routes/api/article.js"
 import user from "./routes/api/user.js"
 import auth from "./routes/api/auth.js"
 import lang from "./routes/api/language.js"
-
+import ad from "./routes/api/ad.js"
 
 
 import mongoose from 'mongoose'
@@ -57,6 +57,7 @@ app.use("/api/articles", article)
 app.use("/api/users", user)
 app.use("/api/auth", auth)
 app.use("/api/lang", lang)
+app.use("/api/ads", ad)
 
 app.get("*", (req, res) => {
     res.sendFile(join(__dirname, "client", "build", "index.html"))

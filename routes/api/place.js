@@ -45,7 +45,7 @@ router.post("/delete", auth, async (req, res) =>  {
 })
 
 router.post("/edit", auth, async (req, res) => {
-    const { id, name, region, city, card_img, description, images, gm_iframe, gm_link} = req.body
+    const { id, name, region, city, card_img, description, images, gm_iframe, gm_link, ad} = req.body
 
     let place = {
         name: name,
@@ -57,14 +57,15 @@ router.post("/edit", auth, async (req, res) => {
         location:{
             google_maps_iframe: gm_iframe,
             google_maps_link: gm_link
-        }
+        },
+        ad
     }
     Place.updateOne({_id: id}, place)
     .then(() => res.sendStatus(200))
 })
 
 router.post("/", auth, (req, res) => {
-    const { name, region, city, card_img, description, images, gm_iframe, gm_link} = req.body
+    const { name, region, city, card_img, description, images, gm_iframe, gm_link, ad} = req.body
 
     let place = new Place({
         name: name,
@@ -76,7 +77,8 @@ router.post("/", auth, (req, res) => {
         location:{
             google_maps_iframe: gm_iframe,
             google_maps_link: gm_link
-        }
+        }, 
+        ad
     })
 
     place.save()

@@ -25,6 +25,20 @@ let articleSchema = mongoose.Schema({
     card_image:{
         type: String,
         required: true
+    },
+    ad:{
+        image: {
+            type: String,
+            required: true
+        },
+        url:{
+            type: String,
+            required: true
+        },
+        owner: {
+            type: String,
+            required: true
+        },
     }
 })
 

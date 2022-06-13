@@ -37,6 +37,14 @@
     color: white;
     background-color: #1f1f1f;
 }
+.ad_box{
+    width: 100%;
+    margin-top: 50px;
+    background-color: #f8d512;
+    padding: 20px 10px 20px 10px;
+    border-radius: 10px;
+    border: 1px solid #1f1f1f;
+}
 
 @media screen and (max-width: 1200px){
     .items-grid{

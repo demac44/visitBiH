@@ -10,6 +10,7 @@ const EditArticle = () => {
   const [article, setArticle] = useState({})
   const [loading, setLoading] = useState(true)
   const [bannerImg, setBannerImg] = useState(null)
+  const [adImg, setAdImg] = useState(null)
   const [newSections, setNewSections] = useState([])
   const [oldSections, setOldSections] = useState([])
   const [confirmDelete, setConfirmDelete] = useState(false)
@@ -91,14 +92,32 @@ const EditArticle = () => {
     })
   }
 
+  const uploadAd = async () => {
+    let data = new FormData()
+    data.append("file", adImg)
+    data.append("upload_preset", "visitbih-image")
+    data.append("cloud_name", "de5mm13ux")
+    data.append("folder", "visitBiH - Ads images")
+    return await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
+    .then(res => {return res.data.secure_url})
+  }
+
+
   const onSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     let bannerLink
     let cardImgLink
+    let adImageUrl = ""
 
     await uploadOldSections()
     await uploadNewSections()
+
+    if(adImg){
+      adImageUrl = await uploadAd()
+    } else {
+      adImageUrl = ""
+    }
 
     // check if banner changed an upload it
     if(bannerImg){
@@ -130,8 +149,12 @@ const EditArticle = () => {
         },
         card_image: cardImgLink,
         banner: bannerLink,
-        sections: sections
-      },
+        sections: sections,
+        ad:{
+          owner: e.target.ad_owner.value,
+          image: adImageUrl,
+          url: e.target.ad_url.value
+        }      },
       withCredentials: true
     })
     .then(() => {setLoading(false); window.location.reload()})
@@ -320,6 +343,21 @@ const EditArticle = () => {
                     section_image_description: ""},
             }])
             }><i className='fas fa-plus'></i> NEW SECTION</div>
+
+            <div className='ad_box'>
+              
+              <label>ADVERTISEMENT</label>
+              <input name='ad_owner' id='ad_owner' placeholder='Ad owner' defaultValue={article?.ad?.owner}/>
+
+              <input name='ad_url' id='ad_url' placeholder='Ad URL' defaultValue={article?.ad?.url}/>
+
+              <label htmlFor='ad_img'>Edit ad image:</label>
+              <input defaultValue={article?.ad?.image} disabled/>
+
+              <img src={article?.ad?.image} style={{width:"100%", marginTop:"10px"}} alt=""/>
+
+              <input type="file" id='ad_img' name='ad_img' accept='image/*' multiple={false} onChange={(e)=>setAdImg(e.target.files[0])}/>
+            </div>
 
 
             <button type='submit' className='admin_add_btn'>SAVE</button>                                   

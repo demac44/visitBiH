@@ -6,6 +6,7 @@ import ScreenLoader from "../../../Components/General/Loaders/ScreenLoader"
 const AddArticle = () => {
   const [loading, setLoading] = useState(false)
   const [bannerImg, setBannerImg] = useState({})
+  const [adImg, setAdImg] = useState(null)
   const [sections, setSections] = useState([{
     section_image: "",
     section_id: 0,
@@ -68,9 +69,13 @@ const AddArticle = () => {
 
     let bannerLink
     let cardImgLink
+    let adImageUrl = ""
 
     await uploadSections()
 
+    if(adImg){
+      adImageUrl = await uploadAd()
+    }
 
     bannerLink = await uploadBanner()
     cardImgLink = await uploadCardImage()
@@ -94,7 +99,12 @@ const AddArticle = () => {
         },
         banner: bannerLink,
         card_image: cardImgLink,  
-        sections: sections
+        sections: sections,
+        ad:{
+          image: adImageUrl,
+          owner: e.target.ad_owner.value,
+          url: e.target.ad_url.value
+        }
       },
       withCredentials: true
     })
@@ -140,6 +150,17 @@ const AddArticle = () => {
       }
     }
   }
+
+  const uploadAd = async () => {
+    let data = new FormData()
+    data.append("file", adImg)
+    data.append("upload_preset", "visitbih-image")
+    data.append("cloud_name", "de5mm13ux")
+    data.append("folder", "visitBiH - Ads images")
+    return await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
+    .then(res => {return res.data.secure_url})
+  }
+
 
 
 
@@ -212,6 +233,16 @@ const AddArticle = () => {
                   }
             }])}><i className='fas fa-plus'></i> NEW SECTION</div>
 
+          <div className='ad_box'>
+            
+            <label>ADD ADVERTISEMENT</label>
+            <input name='ad_owner' id='ad_owner' placeholder='Ad owner'/>
+
+            <input name='ad_url' id='ad_url' placeholder='Ad URL'/>
+
+            <label htmlFor='ad_img'>Add ad image:</label>
+            <input type="file" id='ad_img' name='ad_img' accept='image/*' multiple={false} onChange={(e)=>setAdImg(e.target.files[0])}/>
+          </div>
 
             <button type='submit' className='admin_add_btn'>ADD</button>                                   
         </form>

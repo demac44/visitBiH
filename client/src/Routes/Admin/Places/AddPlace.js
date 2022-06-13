@@ -8,6 +8,17 @@ const AddPlace = () => {
   const [images, setImages] = useState([])
   const [filesLength, setFilesLength] = useState(0)
   const [cardImg, setCardImg] = useState({})
+  const [adImg, setAdImg] = useState({})
+
+  const uploadAd = async () => {
+    let data = new FormData()
+    data.append("file", adImg)
+    data.append("upload_preset", "visitbih-image")
+    data.append("cloud_name", "de5mm13ux")
+    data.append("folder", "visitBiH - Ads images")
+    return await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
+    .then(res => {return res.data.secure_url})
+  }
 
 
   const onSubmit = async (e) => {
@@ -37,6 +48,8 @@ const AddPlace = () => {
     await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
     .then(res => {cardImgURL = res.data.secure_url;})
 
+    let adImageUrl = await uploadAd()
+
     
     axios({
       method: 'POST',
@@ -57,7 +70,12 @@ const AddPlace = () => {
         gm_iframe: e.target.google_maps_iframe.value,
         gm_link: e.target.google_maps_link.value,
         images: imgURLs,
-        card_img: cardImgURL
+        card_img: cardImgURL,
+        ad: {
+          image: adImageUrl,
+          url: e.target.ad_url.value,
+          owner: e.target.ad_owner.value
+        }
       },
       withCredentials: true
     })
@@ -112,6 +130,18 @@ const AddPlace = () => {
 
             <label htmlFor='images'>Add images:</label>
             <input required type="file" name='images' id='images' accept='image/*' onChange={(e)=>{setImages(e.target.files);setFilesLength(e.target.files.length)}} multiple={true}/>
+
+          <div className='ad_box'>
+  
+            <label>ADD ADVERTISEMENT</label>
+            <input name='ad_owner' id='ad_owner' placeholder='Ad owner'/>
+
+            <input name='ad_url' id='ad_url' placeholder='Ad URL'/>
+
+            <label htmlFor='ad_img'>Add ad image:</label>
+            <input type="file" id='ad_img' name='ad_img' accept='image/*' multiple={false} onChange={(e)=>setAdImg(e.target.files[0])}/>
+          </div>
+
 
             <button type='submit' className='admin_add_btn'>ADD</button>                                   
           </form>

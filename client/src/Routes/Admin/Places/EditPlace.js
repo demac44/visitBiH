@@ -12,6 +12,7 @@ const EditPlace = () => {
   const [newImages, setNewImages] = useState([])
   const [filesLength, setFilesLength] = useState(0)
   const [cardImg, setCardImg] = useState(null)
+  const [adImg, setAdImg] = useState(null)
   const [confirmDelete, setConfirmDelete] = useState(false)
 
 
@@ -34,12 +35,22 @@ const EditPlace = () => {
     .then(() => setLoading(false))
   }, [params?.id])
 
+  const uploadAd = async () => {
+    let data = new FormData()
+    data.append("file", adImg)
+    data.append("upload_preset", "visitbih-image")
+    data.append("cloud_name", "de5mm13ux")
+    data.append("folder", "visitBiH - Ads images")
+    return await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
+    .then(res => {return res.data.secure_url})
+  }
+
   const onSubmit = async (e) => {
     e.preventDefault() 
     setLoading(true)
     let imgURLs = []
     let cardImgURL = ""
-
+    let adImageUrl = ""
 
     // Upload images
     for(let i = 0;i < filesLength; i++){
@@ -66,7 +77,12 @@ const EditPlace = () => {
       .then(res => {cardImgURL = res.data.secure_url;})
     } else cardImgURL = place.card_img
 
-    
+    if(adImg){
+      adImageUrl = await uploadAd()
+    } else {
+      adImageUrl = place?.ad?.image
+    }
+
     axios({
       method:"POST",
       url: '/api/places/edit',
@@ -87,7 +103,12 @@ const EditPlace = () => {
         gm_iframe: e.target.google_maps_iframe.value,
         gm_link: e.target.google_maps_link.value,
         images: imgURLs,
-        card_img: cardImgURL
+        card_img: cardImgURL,
+        ad:{
+          owner: e.target.ad_owner.value,
+          image: adImageUrl,
+          url: e.target.ad_url.value
+        }
       },
       withCredentials: true
     })
@@ -180,6 +201,21 @@ const EditPlace = () => {
 
             <label htmlFor='images'>Add new images:</label>
             <input type="file" name='images' id='images' accept='image/*' onChange={(e)=>{setNewImages(e.target.files);setFilesLength(e.target.files.length)}} multiple={true}/>
+
+            <div className='ad_box'>
+  
+              <label>ADVERTISEMENT</label>
+              <input name='ad_owner' id='ad_owner' placeholder='Ad owner' defaultValue={place?.ad?.owner}/>
+
+              <input name='ad_url' id='ad_url' placeholder='Ad URL' defaultValue={place?.ad?.url}/>
+
+              <label htmlFor='ad_img'>Edit ad image:</label>
+              <input defaultValue={place?.ad?.image} disabled/>
+
+              <img src={place?.ad?.image} style={{width:"100%", marginTop:"10px"}} alt=""/>
+
+              <input type="file" id='ad_img' name='ad_img' accept='image/*' multiple={false} onChange={(e)=>setAdImg(e.target.files[0])}/>
+            </div>
 
             <button type='submit' className='admin_add_btn'>SAVE</button> 
           </form>

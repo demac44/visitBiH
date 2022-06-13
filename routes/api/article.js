@@ -1,4 +1,4 @@
-import express, { response } from "express"
+import express from "express"
 import auth from "../../middleware/auth.js"
 import Article from "../../models/Article.js"
 
@@ -33,7 +33,7 @@ router.post("/article/delete", auth, async (req, res) => {
 
 
 router.post("/article/edit", auth, async (req, res) => {
-    const { title, intro_text, intro_title, banner, sections, id, card_image} = req.body
+    const { title, intro_text, intro_title, banner, sections, id, card_image, ad} = req.body
 
     let article ={
         title,
@@ -41,7 +41,8 @@ router.post("/article/edit", auth, async (req, res) => {
         intro_title,
         banner,
         sections,
-        card_image
+        card_image, 
+        ad
     }
 
     Article.updateOne({_id: id}, article)
@@ -49,7 +50,7 @@ router.post("/article/edit", auth, async (req, res) => {
 })
 
 router.post("/", auth, (req, res) => {
-    const { title, intro_text, intro_title, banner, sections, card_image} = req.body
+    const { title, intro_text, intro_title, banner, sections, card_image, ad} = req.body
 
     let article = new Article({
         title,
@@ -57,7 +58,8 @@ router.post("/", auth, (req, res) => {
         intro_title,
         banner,
         sections,
-        card_image
+        card_image,
+        ad
     })
 
     article.save()
