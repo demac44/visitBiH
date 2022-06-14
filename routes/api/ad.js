@@ -21,6 +21,11 @@ router.post("/ad/region", async (req, res) => {
     .then(response => res.json(response))
 })
 
+router.post("/ad/article", async (req, res) => {
+    Ad.findOne({type: "article-ad"})
+    .then(response => res.json(response))
+})
+
 router.post("/add", auth, async (req, res) => {
     const { image, owner, region, url, type} = req.body
 

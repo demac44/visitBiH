@@ -80,7 +80,7 @@ const EditPlace = () => {
     if(adImg){
       adImageUrl = await uploadAd()
     } else {
-      adImageUrl = place?.ad?.image
+      adImageUrl = e.target.ad_old_img.value
     }
 
     axios({
@@ -210,7 +210,7 @@ const EditPlace = () => {
               <input name='ad_url' id='ad_url' placeholder='Ad URL' defaultValue={place?.ad?.url}/>
 
               <label htmlFor='ad_img'>Edit ad image:</label>
-              <input defaultValue={place?.ad?.image} disabled/>
+              <input name="ad_old_img" id="ad_old_img" defaultValue={place?.ad?.image}/>
 
               <img src={place?.ad?.image} style={{width:"100%", marginTop:"10px"}} alt=""/>
 
