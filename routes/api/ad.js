@@ -22,7 +22,7 @@ router.post("/ad/region", async (req, res) => {
 })
 
 router.post("/ad/article", async (req, res) => {
-    Ad.findOne({type: "article-ad"})
+    Ad.findOne({type: "articles-ad"})
     .then(response => res.json(response))
 })
 
