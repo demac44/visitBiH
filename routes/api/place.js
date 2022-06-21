@@ -5,30 +5,15 @@ import Place from "../../models/Place.js"
 const router = express.Router()
 
 router.get("/",  async (req, res) => {
-    let data = []
-
     await Place.find()
-    .then(response => data = response)
-
-    res.json(data)
+    .then(response => res.json(response)) 
 })
 
 
 router.post("/place", async (req, res) => {
-    let data = []
-
-    await Place.find({_id: req.body.id})
-    .then(response => data = response)
-
-    res.json(data)
-})
-
-
-router.post("/place/_id", auth, async (req, res) => {
     await Place.find({_id: req.body.id})
     .then(response => res.json(response))
 })
-
 
 router.post("/region", async (req, res) => {
     let data = []

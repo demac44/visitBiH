@@ -58,14 +58,12 @@ const AddPlace = () => {
         name: {
           english: e.target.name_en.value,
           bosnian: e.target.name_bs.value,
-          arabic: e.target.name_ar.value,
         },        
         region: e.target.region.value,
         city: e.target.city.value,
         description: {
           english: e.target.desc_en.value,
           bosnian: e.target.desc_bs.value,
-          arabic: e.target.desc_ar.value,
         },        
         gm_iframe: e.target.google_maps_iframe.value,
         gm_link: e.target.google_maps_link.value,
@@ -74,7 +72,8 @@ const AddPlace = () => {
         ad: {
           image: adImageUrl,
           url: e.target.ad_url.value,
-          owner: e.target.ad_owner.value
+          owner: e.target.ad_owner.value,
+          showAd: e.target.show_ad.value === "hidden" ? false : true
         }
       },
       withCredentials: true
@@ -96,7 +95,6 @@ const AddPlace = () => {
           <form method='POST' onSubmit={onSubmit} className="admin_add_form">
             <input required name='name_en' id='name' placeholder='Name (english)'/>
             <input required name='name_bs' id='name' placeholder='Name (bosnian)'/>
-            <input required name='name_ar' id='name' placeholder='Name (arabic)'/>
             <select name='region' required>
               <option value="Sarajevo">Sarajevo</option>
               <option value="West Bosnia">West Bosnia</option>
@@ -120,7 +118,6 @@ const AddPlace = () => {
             <input required name='city' id='city' placeholder='City'/>                                        
             <textarea required name='desc_en' id='description' placeholder='Description (english)'/>   
             <textarea required name='desc_bs' id='description' placeholder='Description (bosnian)'/>    
-            <textarea required name='desc_ar' id='description' placeholder='Description (arabic)'/>                
             <input required name='google_maps_iframe' id='google_maps_iframe' placeholder='Google maps iframe'/> 
             <input required name='google_maps_link' id='google_maps_link' placeholder='Google maps link'/>     
 
@@ -134,6 +131,14 @@ const AddPlace = () => {
           <div className='ad_box'>
   
             <label>ADD ADVERTISEMENT</label>
+
+            <div className='show-ad-btn'>
+                <select name="show_ad">
+                  <option value="shown">Shown</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+              </div>
+
             <input name='ad_owner' id='ad_owner' placeholder='Ad owner'/>
 
             <input name='ad_url' id='ad_url' placeholder='Ad URL'/>

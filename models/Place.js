@@ -53,6 +53,10 @@ let placeSchema = mongoose.Schema({
             type: String,
             required: true
         },
+        showAd: {
+            type: Boolean,
+            required: true
+        }
     }
 })
 

@@ -13,7 +13,9 @@ router.get("/", async (req, res) => {
 
 router.post("/article", async (req, res) => {
     Article.findOne({_id: req.body.id})
-    .then(response => res.json(response))
+    .then(response => {
+        Article.updateOne({_id: req.body.id}, {$set: {reads: response?.reads ? response?.reads+1 : 0}}).then(() => res.json(response))
+    })
 })
 
 router.get("/all", async (req, res) => {
@@ -21,10 +23,28 @@ router.get("/all", async (req, res) => {
     .then(response => res.json(response))
 })
 
-router.post("/article/_id", auth, async (req, res) => {
-    Article.findOne({_id: req.body.id})
+router.get("/latest", async (req, res) => {
+    Article.find().limit(20)
     .then(response => res.json(response))
 })
+
+router.get("/popular", async (req, res) => {
+    Article.find().sort([["reads", -1]]).limit(10)
+    .then(response => {res.json(response)})
+})
+
+router.post("/search", async (req, res) => {
+    const{ query } = req.body
+
+    Article.find().sort([["reads", -1]])
+    .then(response => {
+        res.json(response.filter(article => {
+            return article.title.english.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase().replace(/\s+/g, '')) || article.title.bosnian.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase().replace(/\s+/g, ''))
+        }))
+    })
+})
+
+
 
 router.post("/article/delete", auth, async (req, res) => {
     await Article.deleteOne({_id: req.body.id})
@@ -59,6 +79,7 @@ router.post("/", auth, (req, res) => {
         banner,
         sections,
         card_image,
+        reads: 0,
         ad
     })
 

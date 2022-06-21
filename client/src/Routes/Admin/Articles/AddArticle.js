@@ -103,7 +103,8 @@ const AddArticle = () => {
         ad:{
           image: adImageUrl,
           owner: e.target.ad_owner.value,
-          url: e.target.ad_url.value
+          url: e.target.ad_url.value,
+          showAd: e.target.show_ad.value === "hidden" ? false : true
         }
       },
       withCredentials: true
@@ -236,6 +237,15 @@ const AddArticle = () => {
           <div className='ad_box'>
             
             <label>ADD ADVERTISEMENT</label>
+
+            <div className='show-ad-btn'>
+                <select name="show_ad">
+                  <option value="shown">Shown</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+            </div>
+
+
             <input name='ad_owner' id='ad_owner' placeholder='Ad owner'/>
 
             <input name='ad_url' id='ad_url' placeholder='Ad URL'/>

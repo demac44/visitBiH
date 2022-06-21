@@ -22,7 +22,7 @@ const EditArticle = () => {
     setLoading(true)
     axios({
       method: "POST",
-      url: "/api/articles/article/_id",
+      url: "/api/articles/article",
       data:{
         id: params.id
       },
@@ -153,7 +153,8 @@ const EditArticle = () => {
         ad:{
           owner: e.target.ad_owner.value,
           image: adImageUrl,
-          url: e.target.ad_url.value
+          url: e.target.ad_url.value,
+          showAd: e.target.show_ad.value === "hidden" ? false : true
         }      },
       withCredentials: true
     })
@@ -347,6 +348,15 @@ const EditArticle = () => {
             <div className='ad_box'>
               
               <label>ADVERTISEMENT</label>
+
+              <div className='show-ad-btn'>
+                <select name="show_ad" defaultValue={article?.ad?.showAd === true ? "shown" : "hidden"}>
+                  <option value="shown">Shown</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+              </div>
+
+
               <input name='ad_owner' id='ad_owner' placeholder='Ad owner' defaultValue={article?.ad?.owner}/>
 
               <input name='ad_url' id='ad_url' placeholder='Ad URL' defaultValue={article?.ad?.url}/>

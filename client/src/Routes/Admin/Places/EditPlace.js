@@ -22,7 +22,7 @@ const EditPlace = () => {
     setLoading(true)
     axios({
       method:"POST",
-      url: "/api/places/place/_id",
+      url: "/api/places/place",
       data: {
         id: params.id
       },
@@ -91,14 +91,12 @@ const EditPlace = () => {
         name: {
           english: e.target.name_en.value,
           bosnian: e.target.name_bs.value,
-          arabic: e.target.name_ar.value,
         },
         region: e.target.region.value,
         city: e.target.city.value,
         description: {
           english: e.target.desc_en.value,
           bosnian: e.target.desc_bs.value,
-          arabic: e.target.desc_ar.value,
         },
         gm_iframe: e.target.google_maps_iframe.value,
         gm_link: e.target.google_maps_link.value,
@@ -107,7 +105,8 @@ const EditPlace = () => {
         ad:{
           owner: e.target.ad_owner.value,
           image: adImageUrl,
-          url: e.target.ad_url.value
+          url: e.target.ad_url.value,
+          showAd: e.target.show_ad.value === "hidden" ? false : true
         }
       },
       withCredentials: true
@@ -149,7 +148,6 @@ const EditPlace = () => {
           <form method='POST' onSubmit={onSubmit} className="admin_add_form">
             <input required name='name_en' id='name' placeholder='Name (english)' defaultValue={place?.name?.english}/>
             <input required name='name_bs' id='name' placeholder='Name (bosnian)' defaultValue={place?.name?.bosnian}/>
-            <input required name='name_ar' id='name' placeholder='Name (arabic)' defaultValue={place?.name?.arabic}/>
             <select name='region' required defaultValue={place.region}>
               <option value="Sarajevo">Sarajevo</option>
               <option value="West Bosnia">West Bosnia</option>
@@ -173,7 +171,6 @@ const EditPlace = () => {
             <input required name='city' id='city' placeholder='City' defaultValue={place.city}/>                                        
             <textarea required name='desc_en' id='description' placeholder='Description (english)' defaultValue={place?.description?.english}/>   
             <textarea required name='desc_bs' id='description' placeholder='Description (bosnian)' defaultValue={place?.description?.bosnian}/>    
-            <textarea required name='desc_ar' id='description' placeholder='Description (arabic)' defaultValue={place?.description?.arabic}/>    
 
 
             <label>Location</label>
@@ -205,6 +202,14 @@ const EditPlace = () => {
             <div className='ad_box'>
   
               <label>ADVERTISEMENT</label>
+
+              <div className='show-ad-btn'>
+                <select name="show_ad" defaultValue={place?.ad?.showAd === true ? "shown" : "hidden"}>
+                  <option value="shown">Shown</option>
+                  <option value="hidden">Hidden</option>
+                </select>
+              </div>
+
               <input name='ad_owner' id='ad_owner' placeholder='Ad owner' defaultValue={place?.ad?.owner}/>
 
               <input name='ad_url' id='ad_url' placeholder='Ad URL' defaultValue={place?.ad?.url}/>

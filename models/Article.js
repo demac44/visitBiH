@@ -26,6 +26,10 @@ let articleSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    reads: {
+        type: Number,
+        required: true
+    },
     ad:{
         image: {
             type: String,
@@ -39,6 +43,10 @@ let articleSchema = mongoose.Schema({
             type: String,
             required: true
         },
+        showAd: {
+            type: Boolean,
+            required: true
+        }
     }
 })
 
