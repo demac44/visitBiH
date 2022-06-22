@@ -150,6 +150,7 @@ const EditArticle = () => {
         card_image: cardImgLink,
         banner: bannerLink,
         sections: sections,
+        searchString: e.target.search_string.value,
         ad:{
           owner: e.target.ad_owner.value,
           image: adImageUrl,
@@ -262,12 +263,14 @@ const EditArticle = () => {
           </div>
           <form method='POST' onSubmit={onSubmit} className="admin_add_form">
 
-            <input required name='title_en' id='title_en' placeholder='Title (english)' defaultValue={article.title.english}/>
-            <input required name='title_bs' id='title_bs' placeholder='Title (bosnian)' defaultValue={article.title.bosnian}/>     
-            <input required name='intro_title_en' id='intro_title_en' placeholder='Intro title (english)' defaultValue={article.intro_title.english}/>   
-            <input required name='intro_title_bs' id='intro_title_bs' placeholder='Intro title (bosnian)' defaultValue={article.intro_title.bosnian}/>        
-            <textarea required name='intro_text_en' id='intro_text_en' placeholder='Intro text (english)' defaultValue={article.intro_text.english}/>     
-            <textarea required name='intro_text_bs' id='intro_text_bs' placeholder='Intro text (bosnian)' defaultValue={article.intro_text.bosnian}/>       
+            <input required name='title_en' id='title_en' placeholder='Title (english)' defaultValue={article?.title?.english}/>
+            <input required name='title_bs' id='title_bs' placeholder='Title (bosnian)' defaultValue={article?.title?.bosnian}/>    
+            <input required name='intro_title_en' id='intro_title_en' placeholder='Intro title (english)' defaultValue={article?.intro_title?.english}/>   
+            <input required name='intro_title_bs' id='intro_title_bs' placeholder='Intro title (bosnian)' defaultValue={article?.intro_title?.bosnian}/>        
+            <textarea required name='intro_text_en' id='intro_text_en' placeholder='Intro text (english)' defaultValue={article?.intro_text?.english}/>     
+            <textarea required name='intro_text_bs' id='intro_text_bs' placeholder='Intro text (bosnian)' defaultValue={article?.intro_text?.bosnian}/>       
+            <input type="text" required name='search_string' id='search_string' placeholder='Change search string' defaultValue={article?.searchString}/>                                      
+
             
             <label>Banner image</label>
             <input defaultValue={article.banner} readOnly/>

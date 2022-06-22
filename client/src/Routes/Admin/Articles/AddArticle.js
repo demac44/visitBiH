@@ -100,6 +100,7 @@ const AddArticle = () => {
         banner: bannerLink,
         card_image: cardImgLink,  
         sections: sections,
+        searchString: e.target.search_string.value,
         ad:{
           image: adImageUrl,
           owner: e.target.ad_owner.value,
@@ -186,6 +187,8 @@ const AddArticle = () => {
             <input required name='intro_text_en' id='intro_text_en' placeholder='Intro text (english)'/>      
             <input required name='intro_text_bs' id='intro_text_bs' placeholder='Intro text (bosnian)'/>        
 
+            <input type="text" required name='search_string' id='search_string' placeholder='Search string'/>                                      
+
 
             <label htmlFor='banner'>Add banner image: </label>
             <input required type="file" id='banner' name='banner' accept='image/*' multiple={false} onChange={(e)=>setBannerImg(e.target.files[0])}/>
@@ -202,8 +205,8 @@ const AddArticle = () => {
 
               <label >Section: </label>
 
-              <input required name='section_title_en' id='section_title_en' onChange={(e) => onChange(e.target.value, "section_title", section, "english")} placeholder='Title (english)'/>    
-              <input required name='section_title_bs' id='section_title_bs' onChange={(e) => onChange(e.target.value, "section_title", section, "bosnian")} placeholder='Title (bosnian)'/>                                      
+              <input type="text" required name='section_title_en' id='section_title_en' onChange={(e) => onChange(e.target.value, "section_title", section, "english")} placeholder='Title (english)'/>    
+              <input type="text" required name='section_title_bs' id='section_title_bs' onChange={(e) => onChange(e.target.value, "section_title", section, "bosnian")} placeholder='Title (bosnian)'/>      
 
               <textarea required name='section_text_en' onChange={(e) => onChange(e.target.value, "section_text", section, "english")} id='section_text_en' placeholder='Section text (english)'/>
               <textarea required name='section_text_bs' onChange={(e) => onChange(e.target.value, "section_text", section, "bosnian")} id='section_text_bs' placeholder='Section text (bosnian)'/>                                      

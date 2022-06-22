@@ -30,6 +30,10 @@ let articleSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    searchString: {
+        type: String,
+        required: true
+    },
     ad:{
         image: {
             type: String,

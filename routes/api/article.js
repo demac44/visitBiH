@@ -34,12 +34,12 @@ router.get("/popular", async (req, res) => {
 })
 
 router.post("/search", async (req, res) => {
-    const{ query } = req.body
+    const { query } = req.body
 
     Article.find().sort([["reads", -1]])
     .then(response => {
         res.json(response.filter(article => {
-            return article.title.english.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase().replace(/\s+/g, '')) || article.title.bosnian.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase().replace(/\s+/g, ''))
+            return article?.searchString?.includes(query?.toLowerCase().trim()) || article?.searchString?.toLowerCase().includes(query?.toLowerCase().trim())
         }))
     })
 })
@@ -53,7 +53,7 @@ router.post("/article/delete", auth, async (req, res) => {
 
 
 router.post("/article/edit", auth, async (req, res) => {
-    const { title, intro_text, intro_title, banner, sections, id, card_image, ad} = req.body
+    const { title, intro_text, intro_title, banner, sections, id, card_image, ad, searchString} = req.body
 
     let article ={
         title,
@@ -62,7 +62,8 @@ router.post("/article/edit", auth, async (req, res) => {
         banner,
         sections,
         card_image, 
-        ad
+        ad,
+        searchString: searchString?.replace(/\s/g, "").toLowerCase()
     }
 
     Article.updateOne({_id: id}, article)
@@ -70,7 +71,7 @@ router.post("/article/edit", auth, async (req, res) => {
 })
 
 router.post("/", auth, (req, res) => {
-    const { title, intro_text, intro_title, banner, sections, card_image, ad} = req.body
+    const { title, intro_text, intro_title, banner, sections, card_image, ad, searchString} = req.body
 
     let article = new Article({
         title,
@@ -80,7 +81,8 @@ router.post("/", auth, (req, res) => {
         sections,
         card_image,
         reads: 0,
-        ad
+        ad,
+        searchString: searchString?.replace(/\s/g, "").toLowerCase()
     })
 
     article.save()
