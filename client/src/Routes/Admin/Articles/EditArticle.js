@@ -44,6 +44,7 @@ const EditArticle = () => {
         await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
         .then(res => {
           copy[i].section_image = res.data.secure_url
+          copy[i].changed = false
           setOldSections(copy)
         })
         .catch(err => console.log(err))

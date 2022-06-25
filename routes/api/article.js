@@ -7,14 +7,14 @@ const router = express.Router()
 
 
 router.get("/", async (req, res) => {
-    Article.find().limit(3)
+    Article.find().limit(2)
     .then(response => res.json(response))
 })
 
 router.post("/article", async (req, res) => {
     Article.findOne({_id: req.body.id})
     .then(response => {
-        Article.updateOne({_id: req.body.id}, {$set: {reads: response?.reads ? response?.reads+1 : 0}}).then(() => res.json(response))
+        Article.updateOne({_id: req.body.id}, {$set: {reads: response?.reads+1}}).then(() => res.json(response))
     })
 })
 

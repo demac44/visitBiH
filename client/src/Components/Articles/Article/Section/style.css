@@ -7,6 +7,22 @@
     border-radius: 10px;
     z-index: 100;
 }
+.article-ad{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 60%;
+    height: 150px;
+    margin-top: 20px;
+    background-color: #e7e7e7;
+    z-index: 100;
+}
+.article-ad img{
+    min-width: 100%;
+    min-height: 100%;
+}
 .article-section h2{
     font-size: 30px;
     color: black;

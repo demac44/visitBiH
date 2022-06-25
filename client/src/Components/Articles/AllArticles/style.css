@@ -22,7 +22,7 @@
     background-color: rgba(0,0,0,0.5);
     z-index: 100;
 }
-.all-articles-title{
+.all-articles-header{
     position: relative;
     width: 100%;
     padding: 20px;
@@ -31,16 +31,82 @@
     background-color: rgba(0,0,0,0.9);
     z-index: 1000;
 }
+.articles-search-box{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.articles-search-box form{
+    width: 20%;
+}
+.articles-search-box input{
+    border: none;
+    padding: 10px;
+    outline: none;
+    width: 80%;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+.articles-search-box select{
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+}
+.articles-search-box button{
+    padding: 10px;
+    border: 1px solid white;
+    margin-left: 5px;
+    border-radius: 5px;
+    background-color: transparent;
+}
+.articles-search-box button:hover{
+    background-color: rgb(34, 34, 34);
+    cursor: pointer;
+}
+.articles-search-box button i{
+    color: white;
+    font-size: 16px;
+}
+.articles-search-box select option{
+    font-weight: bold;
+    font-size: 14px;
+    color: black;
+}
 
 
 @media screen and (max-width: 1200px){
     .all-articles{
         grid-template-columns: repeat(3, 1fr);
     }
+    .articles-search-box form{
+        width: 40%;
+    }
 }
 @media screen and (max-width: 991px){
     .all-articles{
         grid-template-columns: repeat(2, 1fr);
+    }
+    .articles-search-box form{
+        width: 50%;
+    }
+}
+@media screen and (max-width: 768px){
+    .articles-search-box form{
+        width: 70%;
     }
 }
 @media screen and (max-width: 567px){
@@ -50,5 +116,21 @@
     .all-articles-title{
         font-size: 22px;
         padding: 20px 10px;
+    }
+}
+@media screen and (max-width:447px){
+    .articles-search-box{
+        flex-direction: column;
+    }
+    .articles-search-box form{
+        width: 100%;
+    }
+    .articles-search-box select{
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .all-articles-header h1{
+        font-size: 25px;
     }
 }

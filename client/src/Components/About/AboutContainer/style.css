@@ -1,11 +1,17 @@
 .about-container{
     position: relative;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: url(../../../Assets/Images/about-bckg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 100;
+    padding-top: 150px;
+    padding-bottom: 20px;
 }
 
 .about-flag-img{
@@ -23,6 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 
 .about-box{
@@ -30,6 +37,7 @@
     padding: 20px;
     background-color: rgba(0,0,0,0.8);
     border-radius: 10px;
+    z-index: 100;
 }
 .about-box h2{
     color: white;
@@ -49,6 +57,30 @@
     line-height: 35px;
 }
 
+.message-input{
+    width: 100%;
+    height: 150px;
+    resize: none;
+    padding: 5px;
+    font-weight: bolder;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.msg-btn{
+    width: 150px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    color: black;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
 
 @media screen and (max-width: 991px){
     .about-flag-img{
@@ -61,21 +93,12 @@
 }
 
 @media screen and (max-width: 768px){
-    .flag-overlay{
-        padding-top: 120px;
-        padding-bottom: 100px;
-        height: fit-content;
-        min-height: 100%;
-    }
     .about-box{
         width: 95%;
     }
 }
 
 @media screen and (max-width: 447px){
-    .about-container{
-        height: calc(100vh + 100px);
-    }
     .about-box p{
         font-size: 16px;
     }

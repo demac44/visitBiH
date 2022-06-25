@@ -23,7 +23,7 @@ const AllPlaces = () => {
   const search = (query) => {
     if(query.length===0){ setFilteredPlaces(places);return}
     const filtered = places.filter(place => {
-      return place.name.toLowerCase().includes(query) || place.city.toLowerCase().includes(query)
+      return place.name["bosnian"].toLowerCase().includes(query) || place.city.toLowerCase().includes(query) || place.name["english"].toLowerCase().includes(query)
     })
     setFilteredPlaces(filtered)
   }

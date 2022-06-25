@@ -24,7 +24,7 @@ const AllArticles = () => {
   const search = (query) => {
     if(query.length===0){ setFilteredArticles(articles);return}
     const filtered = articles.filter(article => {
-      return article.title.toLowerCase().includes(query)
+      return article.title["bosnian"].toLowerCase().includes(query) || article.title["english"].toLowerCase().includes(query)
     })
     setFilteredArticles(filtered)
   }

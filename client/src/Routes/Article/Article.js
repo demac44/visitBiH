@@ -46,9 +46,9 @@ const Article = () => {
             {loading ? <ScreenLoader/> : 
             <>
                 <Navbar/>
-                <ArticleBanner title={article.title[lang]} banner={article.banner}/>
-                <ArticleIntroText title={article.intro_title[lang]} text={article.intro_text[lang]}/>
-                <ArticleSections sections={article.sections} lang={lang}/>
+                <ArticleBanner title={article?.title[lang]} banner={article?.banner}/>
+                <ArticleIntroText title={article?.intro_title[lang]} text={article?.intro_text[lang]}/>
+                <ArticleSections sections={article?.sections} ad={article?.ad} lang={lang}/>
                 <ArticlesList lang={lang}/>
                 <StartExploring lang={lang}/>
                 <Footer/>

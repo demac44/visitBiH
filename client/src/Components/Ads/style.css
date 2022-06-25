@@ -1,0 +1,34 @@
+.place-ad{
+    position: relative;
+    width: 60%;
+    height: 120px;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    margin-bottom: 20px;
+}
+.place-ad img{
+    width: 100%;
+    min-height: 100%;
+}
+
+@media screen and (max-width: 991px){
+    .place-ad{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .place-ad{
+        width: 90%;
+    }
+
+}
+@media screen and (max-width: 447px){
+    .place-ad{
+        width: 95%;
+    }
+}

@@ -10,6 +10,7 @@ import PlaceTitle from '../PlaceTitle/PlaceTitle'
 import Error404 from "../../../Routes/404/Error404"
 
 import {LangContext} from "../../../index"
+import PlaceAd from '../../Ads/PlaceAd'
 
 const PlaceContainer = () => {
   const [place, setPlace] = useState({})
@@ -40,6 +41,7 @@ const PlaceContainer = () => {
       <div className='places-overlay'></div>
       {loading ? <ScreenLoader/> :
       <>
+        <PlaceAd ad={place?.ad}/>
         <PlaceTitle name={place.name[lang]} city={place.city}/>
         <ImageSlider images={place.images}/>    
         <PlaceDescription description={place.description[lang]}/> 

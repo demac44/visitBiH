@@ -1,12 +1,14 @@
 import React from 'react'
+import ArticleAd from '../../../Ads/ArticleAd'
 import ArticleSection from '../Section/ArticleSection'
 import "./style.css"
 
 
-const ArticleSections = ({sections, lang}) => {
+const ArticleSections = ({sections, lang, ad}) => {
   return (
       <div className='article-sections'>
-        <div className='articles-overlay'></div>
+          <div className='articles-overlay'></div>
+          <ArticleAd ad={ad}/>
           {sections.map(section => <ArticleSection section={section[lang]} image={section.section_image} key={section.section_id}/>)}
       </div>
   )

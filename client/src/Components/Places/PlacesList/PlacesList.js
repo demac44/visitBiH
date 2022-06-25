@@ -7,6 +7,7 @@ import PlaceCard from '../PlaceCard/PlaceCard'
 import ScreenLoader from '../../General/Loaders/ScreenLoader'
 
 import {LangContext} from "../../../index"
+import RegionAd from '../../Ads/RegionAd'
 
 const PlacesList = () => {
     const [places, setPlaces] = useState([])
@@ -37,7 +38,11 @@ const PlacesList = () => {
             <div className='places-overlay'></div>
             <div className='places-list'>
                 {loading ? <ScreenLoader/> 
-                : places.map(place => <PlaceCard place={place} key={place._id} lang={lang}/>)}
+                : 
+                <>
+                    <RegionAd region={params.region}/>
+                    {places.map(place => <PlaceCard place={place} key={place._id} lang={lang}/>)}
+                </>}
             </div>
         </div>
     )

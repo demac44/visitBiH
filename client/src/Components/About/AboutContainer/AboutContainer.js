@@ -1,19 +1,36 @@
 import React, { useContext } from 'react'
 import "./style.css"
-import bckg from "../../../Assets/Images/about-bckg.jpg"
 
 
 import { LangContext } from "../../../index"
+import axios from 'axios'
 
 const AboutContainer = () => {
 
   const lang = useContext(LangContext)
 
 
+  const sendMessage = (e) => {
+    e.preventDefault()
+
+    const message = e.target.message.value
+
+    if(message.trim() === ""){
+      return;
+    }
+
+    axios({
+      method: "POST",
+      url: "/api/message/new",
+      data: {
+        msg: message
+      }
+    }).then(() => window.location.reload())
+  }
+
   return (
     <div className='about-container'>
-        <img src={bckg} alt="" className='about-flag-img'/>
-        <div className='flag-overlay'>
+        <div className='flag-overlay'></div>
           {lang === "english" ?
             <div className='about-box'>
                 <h2>ABOUT</h2>
@@ -22,6 +39,11 @@ const AboutContainer = () => {
                 </p>
                 <h3>CONTACT</h3>
                 <p><i className='fas fa-envelope'></i> bihexplore@gmail.com</p>
+                <p>Send a message or make a suggestion</p>
+                <form onSubmit={sendMessage}>
+                  <textarea placeholder='Message' className='message-input' name="message" id='message'></textarea>
+                  <button type='submit' className='msg-btn'>SEND</button>
+                </form>
             </div>
             :
             <div className='about-box'>
@@ -31,8 +53,12 @@ const AboutContainer = () => {
               </p>
               <h3>KONTAKT</h3>
               <p><i className='fas fa-envelope'></i> bihexplore@gmail.com</p>
+              <p>Pošalji poruku</p>
+                <form onSubmit={sendMessage}>
+                  <textarea placeholder='Poruka' className='message-input' name="message" id='message'></textarea>
+                  <button type='submit' className='msg-btn'>POŠALJI</button>
+                </form>
             </div>}
-        </div>
     </div>
   )
 }
