@@ -117,7 +117,7 @@ const EditArticle = () => {
     if(adImg){
       adImageUrl = await uploadAd()
     } else {
-      adImageUrl = ""
+      adImageUrl = e.target.ad_image_old.value
     }
 
     // check if banner changed an upload it
@@ -366,7 +366,7 @@ const EditArticle = () => {
               <input name='ad_url' id='ad_url' placeholder='Ad URL' defaultValue={article?.ad?.url}/>
 
               <label htmlFor='ad_img'>Edit ad image:</label>
-              <input defaultValue={article?.ad?.image}/>
+              <input name="ad_image_old" id="ad_image_old" defaultValue={article?.ad?.image}/>
 
               <img src={article?.ad?.image} style={{width:"100%", marginTop:"10px"}} alt=""/>
 

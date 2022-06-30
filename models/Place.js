@@ -43,19 +43,15 @@ let placeSchema = mongoose.Schema({
     ad:{
         image: {
             type: String,
-            required: true
         },
         url:{
             type: String,
-            required: true
         },
         owner: {
             type: String,
-            required: true
         },
         showAd: {
             type: Boolean,
-            required: true
         }
     }
 })

@@ -8,16 +8,18 @@ const AddPlace = () => {
   const [images, setImages] = useState([])
   const [filesLength, setFilesLength] = useState(0)
   const [cardImg, setCardImg] = useState({})
-  const [adImg, setAdImg] = useState({})
+  const [adImg, setAdImg] = useState(null)
 
   const uploadAd = async () => {
-    let data = new FormData()
-    data.append("file", adImg)
-    data.append("upload_preset", "visitbih-image")
-    data.append("cloud_name", "de5mm13ux")
-    data.append("folder", "visitBiH - Ads images")
-    return await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
-    .then(res => {return res.data.secure_url})
+    if(adImg){
+      let data = new FormData()
+      data.append("file", adImg)
+      data.append("upload_preset", "visitbih-image")
+      data.append("cloud_name", "de5mm13ux")
+      data.append("folder", "visitBiH - Ads images")
+      return await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
+      .then(res => {return res.data.secure_url})
+    } else return ""
   }
 
 
@@ -26,7 +28,6 @@ const AddPlace = () => {
     setLoading(true)
     let imgURLs = []
     let cardImgURL = ""
-
 
     // Upload images
     for(let i = 0;i < filesLength; i++){
@@ -47,6 +48,7 @@ const AddPlace = () => {
     data.append("folder", "visitBiH - Places card images")
     await axios.post("https://api.cloudinary.com/v1_1/de5mm13ux/image/upload", data)
     .then(res => {cardImgURL = res.data.secure_url;})
+
 
     let adImageUrl = await uploadAd()
 

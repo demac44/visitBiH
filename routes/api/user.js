@@ -8,7 +8,7 @@ const router = express.Router()
 
 
 const options =  {
-    maxAge: 3600000*24*30*12
+    maxAge: 3600000*24*30
 }
 
 
