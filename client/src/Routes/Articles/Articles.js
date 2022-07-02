@@ -12,7 +12,7 @@ const Articles = () => {
     const [articles, setArticles] = useState([])
     const [loading, setLoading] = useState(true)
     const [url, setUrl] = useState("/api/articles/latest")
-
+    const [refresh, setRefresh] = useState(false)
 
     const lang = useContext(LangContext)
 
@@ -21,12 +21,13 @@ const Articles = () => {
         axios.get(url)
         .then(res => setArticles(res.data))
         .then(setLoading(false))
-    }, [url])
+    }, [url, refresh])
 
 
     const setUrlCallback = useCallback(value => {
         setUrl(value)
-    }, [setUrl])
+        setRefresh(!refresh)
+    }, [setUrl, setRefresh])
 
     const setArticlesCallback = useCallback(value => {
         setArticles(value)

@@ -13,6 +13,7 @@ import StartExploring from "../../Components/General/StartExploring/StartExplori
 import Error404 from '../404/Error404'
 
 import { LangContext }from "../../index"
+import DownloadTheAppStripe from '../../Components/Download the app/DownloadTheAppStripe'
 
 
 const Article = () => {
@@ -48,6 +49,7 @@ const Article = () => {
                 <Navbar/>
                 <ArticleBanner title={article?.title[lang]} banner={article?.banner}/>
                 <ArticleIntroText title={article?.intro_title[lang]} text={article?.intro_text[lang]}/>
+                <DownloadTheAppStripe bckgColor={"#e7e7e7"} color="black"/>
                 <ArticleSections sections={article?.sections} ad={article?.ad} lang={lang}/>
                 <ArticlesList lang={lang}/>
                 <StartExploring lang={lang}/>

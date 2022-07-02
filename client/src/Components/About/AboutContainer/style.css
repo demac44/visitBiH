@@ -12,6 +12,7 @@
     z-index: 100;
     padding-top: 150px;
     padding-bottom: 20px;
+    text-align: center;
 }
 
 .about-flag-img{
@@ -41,7 +42,11 @@
 }
 .about-box h2{
     color: white;
-    font-size: 32px;
+    font-size: 28px;
+    margin-bottom: 30px;
+    background-color: #2f2f2f;
+    padding: 10px;
+    border-radius: 5px;
 }
 .about-box h3{
     color: white;
@@ -55,6 +60,7 @@
     font-size: 18px;
     margin-top: 20px;
     line-height: 35px;
+    margin-bottom: 20px;
 }
 
 .message-input{
@@ -81,6 +87,30 @@
     cursor: pointer;
     border-radius: 5px;
 }
+.download-app-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+.download-app-box span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.download-app-box span img{
+    height: 70px;
+}
+.download-app-box span h4{
+    color: white;
+    font-size: 30px;
+    margin-left: 10px;
+}
+.download-app-box .gp-logo{
+    height: 100%;
+    height: 100px;
+    margin-left: 50px;
+}
 
 @media screen and (max-width: 991px){
     .about-flag-img{
@@ -96,6 +126,19 @@
     .about-box{
         width: 95%;
     }
+    .download-app-box{
+        padding: 10px;
+    }
+    .download-app-box span img{
+        height: 50px;
+    }
+    .download-app-box span h4{
+        font-size: 26px;
+    }
+    .download-app-box .gp-logo{
+        height: 70px;
+        margin-left: 30px;
+    }
 }
 
 @media screen and (max-width: 447px){
@@ -104,5 +147,20 @@
     }
     .about-box h2, .about-box h3{
         font-size: 25px;
+    }
+    .download-app-box{
+        flex-direction: column;
+    }
+
+    .download-app-box span img{
+        height: 65px;
+    }
+    .download-app-box span h4{
+        font-size: 26px;
+    }
+    .download-app-box .gp-logo{
+        height: 90px;
+        margin-left: 0;
+        margin-top: 20px;
     }
 }

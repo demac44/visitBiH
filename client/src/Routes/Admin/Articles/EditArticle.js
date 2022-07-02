@@ -251,6 +251,21 @@ const EditArticle = () => {
     setConfirmDelete(false)
   }, [setConfirmDelete])
 
+
+  const repostArticle = () => {
+    setLoading(true)
+    axios({
+      method: "POST",
+      url: "/api/articles/article/repost",
+      data: {
+        id: params.id
+      }
+    }).then(() => {
+      setLoading(false)
+      window.location.href = "/admin/articles"
+    })
+  }
+
   return (
     <div className='admin_container'>
       <AdminNavbar/>
@@ -376,6 +391,7 @@ const EditArticle = () => {
 
             <button type='submit' className='admin_add_btn'>SAVE</button>                                   
         </form>
+        <button onClick={() => repostArticle()} className='admin_add_btn'>REPOST</button>                                   
         <button onClick={() => setConfirmDelete(true)} className='admin_add_btn'>DELETE</button>                                   
       </div>}
     </div>  

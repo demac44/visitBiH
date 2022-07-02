@@ -11,6 +11,7 @@ import Error404 from "../../../Routes/404/Error404"
 
 import {LangContext} from "../../../index"
 import PlaceAd from '../../Ads/PlaceAd'
+import DownloadTheAppStripe from '../../Download the app/DownloadTheAppStripe'
 
 const PlaceContainer = () => {
   const [place, setPlace] = useState({})
@@ -38,9 +39,13 @@ const PlaceContainer = () => {
 
   return (
     <div className='place-container'>
-      <div className='places-overlay'></div>
+      <div className='places-overlay'>
+      </div>
       {loading ? <ScreenLoader/> :
       <>
+        <div className='place-gp-link'>
+        <DownloadTheAppStripe bckgColor="black" color="white"/>
+        </div>
         <PlaceAd ad={place?.ad}/>
         <PlaceTitle name={place.name[lang]} city={place.city}/>
         <ImageSlider images={place.images}/>    

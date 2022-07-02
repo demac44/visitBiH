@@ -9,3 +9,23 @@
     padding-top: 130px;
     padding-bottom: 50px;
 }
+.place-gp-link{
+    width: 60%;
+}
+@media screen and (max-width: 991px){
+    .place-gp-link{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .place-gp-link{
+        width: 90%;
+    }
+
+}
+@media screen and (max-width: 447px){
+    .place-gp-link{
+        width: 95%;
+    }
+}

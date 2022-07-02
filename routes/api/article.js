@@ -7,7 +7,7 @@ const router = express.Router()
 
 
 router.get("/", async (req, res) => {
-    Article.find().limit(2)
+    Article.find().limit(2).sort([["_id", -1]])
     .then(response => res.json(response))
 })
 
@@ -24,7 +24,7 @@ router.get("/all", async (req, res) => {
 })
 
 router.get("/latest", async (req, res) => {
-    Article.find().limit(20)
+    Article.find().limit(20).sort([["_id", -1]])
     .then(response => res.json(response))
 })
 
@@ -49,6 +49,31 @@ router.post("/search", async (req, res) => {
 router.post("/article/delete", auth, async (req, res) => {
     await Article.deleteOne({_id: req.body.id})
     .then(() => res.sendStatus(200))
+})
+
+router.post("/article/repost", auth, async (req, res) => {
+    const { id } = req.body
+
+    await Article.findOne({_id: id}).then(response => {
+        let article = new Article({
+            title: response.title,
+            intro_text: response.intro_text,
+            intro_title: response.intro_title,
+            banner: response.banner,
+            sections: response.sections,
+            card_image: response.card_image,
+            reads: response.reads,
+            ad: response.ad,
+            searchString: response.searchString       
+        })
+
+        article.save()
+        .then(() => {
+            Article.deleteOne({_id: id})
+            .then(() => res.sendStatus(200))
+        })
+        })
+
 })
 
 

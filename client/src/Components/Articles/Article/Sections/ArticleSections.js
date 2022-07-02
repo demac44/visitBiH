@@ -1,5 +1,6 @@
 import React from 'react'
 import ArticleAd from '../../../Ads/ArticleAd'
+import DownloadTheAppStripe from '../../../Download the app/DownloadTheAppStripe'
 import ArticleSection from '../Section/ArticleSection'
 import "./style.css"
 

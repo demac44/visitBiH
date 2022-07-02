@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 .article-banner img{
-    width: 100%;
+    min-width: 100%;
     min-height: 100%;
 }
 .article-banner h1{
@@ -19,15 +19,12 @@
 }
 
 
-@media screen and (max-width: 1200px){
-    .article-banner img{
-        width: auto;
-        height: 100%;
-    }
-}
-
 @media screen and (max-width: 768px){
     .article-banner h1{
         font-size: 30px;
+    }
+    .article-banner img{
+        min-width: min-content;
+        height: 100%;
     }
 }

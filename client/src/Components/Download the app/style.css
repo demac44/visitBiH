@@ -1,0 +1,73 @@
+.download-app-stripe{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+    border-radius: 10px;
+}
+.download-app-stripe h3{
+    color: white;   
+    font-size: 22px;
+    background-color: #2f2f2f;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    z-index: 1000;
+    margin-left: 40px;
+}
+.download-app-stripe span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.download-app-stripe span img{
+    height: 40px;
+    z-index: 1000;
+}
+.download-app-stripe span h4{
+    color: white;
+    font-size: 22px;
+    margin-left: 10px;
+    z-index: 1000;
+}
+.download-app-stripe .gp-logo{
+    height: 70px;
+    margin-left: 50px;
+    z-index: 1000;
+}
+
+@media screen and (max-width: 768px){
+    .download-app-stripe h3{
+        font-size: 18px;
+        margin-left: 20px;
+    }
+    .download-app-stripe span img{
+        height: 40px;
+    }
+    .download-app-stripe span h4{
+        font-size: 25px;
+    }
+    .download-app-stripe .gp-logo{
+        height: 60px;
+        margin-left: 20px;
+    }
+}
+@media screen and (max-width: 580px){
+    .download-app-stripe span h4{
+        font-size: 16px;
+        margin-left: 5px;
+    }
+    .download-app-stripe h3{
+        display: none;
+    }
+    .download-app-stripe span img{
+        height: 35px;
+    }
+    .download-app-stripe .gp-logo{
+        height: 50px;
+        margin-left: 10px;
+    }
+}

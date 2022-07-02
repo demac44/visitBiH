@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import "./style.css"
-
+import appLogo from "../../../Assets/Images/icon-pin-rounded.png"
+import googlePlayBtn from "../../../Assets/Images/gp.png"
 
 import { LangContext } from "../../../index"
 import axios from 'axios'
@@ -33,11 +34,19 @@ const AboutContainer = () => {
         <div className='flag-overlay'></div>
           {lang === "english" ?
             <div className='about-box'>
-                <h2>ABOUT</h2>
-                <p>This website is made to introduce the beautiful country of Bosnia and Herzegovina, it's breathtaking and diverse nature, rich history and kind and welcoming people. 
+                {/* <h2 style={{textAlign: "center"}}>Download the app</h2>
+                <a href="#" className='download-app-box'>
+                  <span>
+                    <img src={appLogo} alt=""/>
+                    <h4>Visit BiH</h4>
+                  </span>
+                  <img src={googlePlayBtn} className="gp-logo" alt=""/>
+                </a> */}
+                <h2>About</h2>
+                <p style={{textAlign: "justify"}}>This website is made to introduce the beautiful country of Bosnia and Herzegovina, it's breathtaking and diverse nature, rich history and kind and welcoming people. 
                     Bosnia and Herzegovina is not being promoted enough and is often being misrepresented, so I hope this website will make a difference in representing it in a way it should be.
                 </p>
-                <h3>CONTACT</h3>
+                <h2>Contact</h2>
                 <p><i className='fas fa-envelope'></i> bihexplore@gmail.com</p>
                 <p>Send a message or make a suggestion</p>
                 <form onSubmit={sendMessage}>

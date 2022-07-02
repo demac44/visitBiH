@@ -5,6 +5,7 @@ import ArticleCard from './ArticleCard/ArticleCard'
 import { Link } from 'react-router-dom'
 import SectionLoader from '../../General/Loaders/SectionLoader'
 import ArticlesAd from '../../Ads/ArticlesAd'
+import DownloadTheAppStripe from '../../Download the app/DownloadTheAppStripe'
 
 
 const ArticlesList = ({lang}) => {

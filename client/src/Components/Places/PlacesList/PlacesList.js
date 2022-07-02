@@ -8,6 +8,7 @@ import ScreenLoader from '../../General/Loaders/ScreenLoader'
 
 import {LangContext} from "../../../index"
 import RegionAd from '../../Ads/RegionAd'
+import DownloadTheAppStripe from '../../Download the app/DownloadTheAppStripe'
 
 const PlacesList = () => {
     const [places, setPlaces] = useState([])
@@ -36,6 +37,8 @@ const PlacesList = () => {
     return (
         <div className='places-list-container'>
             <div className='places-overlay'></div>
+
+            <DownloadTheAppStripe bckgColor="black" color="white"/>
             <div className='places-list'>
                 {loading ? <ScreenLoader/> 
                 : 
