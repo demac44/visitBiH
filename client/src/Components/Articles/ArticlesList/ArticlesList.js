@@ -25,8 +25,8 @@ const ArticlesList = ({lang}) => {
             <div className='articles-list-container'>
             {loading ? <SectionLoader/> :
             <>
-                <h1>{lang==="english" ? "FIND OUT MORE ABOUT BOSNIA AND HERZEGOVINA" : "SAZNAJ VIŠE O BOSNI I HERCEGOVINI"}</h1>
-                <div className='overlay'></div>
+                <h1>{lang==="english" ? "Read more about Bosnia and Herzegovina" : "Čitaj više o Bosni i Hercegovini"}</h1>
+                <div className='overlay' style={{backgroundColor: "rgba(0,0,0,0.9)"}}></div>
                 <div className='articles-list'>
                     <ArticlesAd/>
                     {articles.map(article => <ArticleCard article={article} lang={lang} key={article._id}/>)}

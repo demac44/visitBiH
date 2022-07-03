@@ -4,6 +4,7 @@
     border-radius: 10px;
     height: 250px;
     cursor: pointer;
+    overflow: hidden;
 }
 .place-card-overlay{
     position: absolute;
@@ -14,8 +15,7 @@
     height: 100%;
 }
 .card_image{
-    height: 100%;
-    min-width: 100%;
+    min-height: 100%;
     width: 100%;
 }
 .place-card h3{
