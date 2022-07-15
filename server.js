@@ -18,7 +18,6 @@ import lang from "./routes/api/language.js"
 import ad from "./routes/api/ad.js"
 import message from "./routes/api/message.js"
 
-
 import mongoose from 'mongoose'
 
 
@@ -64,6 +63,7 @@ app.use("/api/message", message)
 app.get("*", (req, res) => {
     res.sendFile(join(__dirname, "client", "build", "index.html"))
 })    
+
 
 const PORT = process.env.PORT || 8000
 app.listen(PORT, () => console.log('Server started!'))

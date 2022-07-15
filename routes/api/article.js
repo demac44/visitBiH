@@ -2,6 +2,7 @@ import express from "express"
 import auth from "../../middleware/auth.js"
 import Article from "../../models/Article.js"
 
+import redisClient from "../../middleware/redis.js"
 
 const router = express.Router()
 
@@ -12,9 +13,13 @@ router.get("/", async (req, res) => {
 })
 
 router.post("/article", async (req, res) => {
-    Article.findOne({_id: req.body.id})
+    const { id } = req.body
+
+
+    Article.findOne({_id: id})
     .then(response => {
-        Article.updateOne({_id: req.body.id}, {$set: {reads: response?.reads+1}}).then(() => res.json(response))
+        Article.updateOne({_id: id}, {$set: {reads: response?.reads+1}})
+        res.json(response)
     })
 })
 
@@ -24,13 +29,34 @@ router.get("/all", async (req, res) => {
 })
 
 router.get("/latest", async (req, res) => {
-    Article.find().limit(20).sort([["_id", -1]])
-    .then(response => res.json(response))
+
+    const latest_articles = await redisClient.get("latest_articles")
+
+    if(latest_articles){
+        res.json(JSON.parse(latest_articles))
+    } else {
+        Article.find().limit(20).sort([["_id", -1]])
+        .then(response => {
+            redisClient.setEx("latest_articles", 3600 * 24, JSON.stringify(response))
+            res.json(response)
+        })
+    }
 })
 
 router.get("/popular", async (req, res) => {
-    Article.find().sort([["reads", -1]]).limit(10)
-    .then(response => {res.json(response)})
+
+    const popular_articles = await redisClient.get("popular_articles")
+
+
+    if(popular_articles){
+        res.json(JSON.parse(popular_articles))
+    } else {
+        Article.find().sort([["reads", -1]]).limit(10)
+        .then(response => {
+            redisClient.setEx("popular_articles", 3600 * 24, JSON.stringify(response))
+            res.json(response)
+        })
+    }
 })
 
 router.post("/search", async (req, res) => {

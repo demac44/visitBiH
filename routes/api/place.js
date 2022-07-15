@@ -1,27 +1,58 @@
 import express from "express"
 import auth from "../../middleware/auth.js"
+import redisClient from "../../middleware/redis.js"
 import Place from "../../models/Place.js"
 
 const router = express.Router()
 
 router.get("/",  async (req, res) => {
-    await Place.find()
-    .then(response => res.json(response)) 
+
+    const all_places = await redisClient.get("all_places")
+
+    if(all_places){
+        res.json(JSON.parse(all_places))
+    }
+    else {
+        await Place.find()
+        .then(response => {
+            redisClient.setEx("all_places", 3600 * 24, JSON.stringify(response))
+            res.json(response)
+        }) 
+    }
 })
 
 
 router.post("/place", async (req, res) => {
-    await Place.find({_id: req.body.id})
-    .then(response => res.json(response))
+    const { id } = req.body
+
+    const place = await redisClient.get("place"+id)
+
+    if(place){
+        res.json(JSON.parse(place))
+    }
+    else {
+        Place.find({_id: id})
+        .then(response => {
+            redisClient.setEx("place"+id, 3600 * 24 * 7, JSON.stringify(response))
+            res.json(response)
+        })
+    }
 })
 
 router.post("/region", async (req, res) => {
-    let data = []
+    const { region } = req.body
 
-    await Place.find({region: req.body.region})
-    .then(response => data = response)
-
-    res.json(data)
+    const places = await redisClient.get("region_"+region)
+    
+    if(places){
+        res.json(JSON.parse(places))
+    } else {
+        Place.find({region: req.body.region})
+        .then(response => {
+            redisClient.setEx("region_"+region, 3600 * 24 * 7, JSON.stringify(response))
+            res.json(response)
+        })
+    }
 })
 
 router.post("/delete", auth, async (req, res) =>  {
